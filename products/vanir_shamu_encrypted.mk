@@ -6,3 +6,5 @@ $(call inherit-product, vendor/vanir/products/vanir_shamu.mk)
 
 ## Device identifier. This must come after all inclusions
 PRODUCT_NAME := vanir_shamu_encrypted
+PRODUCT_BUILD_PROP_OVERRIDES += \
++    PRODUCT_NAME=shamu_encrypted
