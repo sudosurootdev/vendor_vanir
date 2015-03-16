@@ -22,7 +22,7 @@ $(call inherit-product, vendor/vanir/products/common_tabs.mk)
 PRODUCT_DEVICE := v500
 PRODUCT_NAME := vanir_v500
 PRODUCT_BRAND := lge
-PRODUCT_MODEL := LG-V500
+PRODUCT_MODEL := LG-V5.1
 PRODUCT_MANUFACTURER := LGE
 
-PRODUCT_BUILD_PROP_OVERRIDES += PRODUCT_NAME=awifi_open_eu BUILD_FINGERPRINT=lge/awifi_open_eu/awifi:5.0/LRX22G/V50010a.1380629540:user/release-keys PRIVATE_BUILD_DESC="awifi_open_eu-user 5.0 LRX22G V50010a.1380629540 release-keys"
+PRODUCT_BUILD_PROP_OVERRIDES += PRODUCT_NAME=awifi_open_eu BUILD_FINGERPRINT=lge/awifi_open_eu/awifi:5.1/LMY47D/V5.110a.13806295.1:user/release-keys PRIVATE_BUILD_DESC="awifi_open_eu-user 5.1 LMY47D V5.110a.13806295.1 release-keys"
