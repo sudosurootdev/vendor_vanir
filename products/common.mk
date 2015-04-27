@@ -19,7 +19,8 @@ PRODUCT_PACKAGES += \
     Email \
     Launcher3 \
     LiveWallpapersPicker \
-    VanirUpdater
+    VanirUpdater \
+    Profiles
 
 # QuickBoot (included automagically for non-oppo qcom devices)
 PRODUCT_PACKAGES += \
