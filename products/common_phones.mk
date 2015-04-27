@@ -9,10 +9,6 @@ PRODUCT_COPY_FILES += \
 PRODUCT_COPY_FILES += \
     vendor/vanir/proprietary/common/etc/selective-spn-conf.xml:system/etc/selective-spn-conf.xml
 
-# World SPN overrides list
-PRODUCT_COPY_FILES += \
-    vendor/vanir/proprietary/common/etc/spn-conf.xml:system/etc/spn-conf.xml
-
 # SIM Toolkit
 PRODUCT_PACKAGES += \
     Stk
