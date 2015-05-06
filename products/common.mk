@@ -13,10 +13,7 @@ $(call inherit-product, vendor/vanir/proprietary/ringtones/VanirRingtones.mk)
 #ifeq ($(filter NIGHTLY SNAPSHOT EXPERIMENTAL,$(CM_BUILDTYPE)),)
 ## CM Platform Library Resource Package
 PRODUCT_PACKAGES += \
-    org.cyanogenmod.platform-res
-
-## CM Platform Library
-PRODUCT_PACKAGES += \
+    org.cyanogenmod.platform-res \
     org.cyanogenmod.platform \
     org.cyanogenmod.platform.xml
 #endif
