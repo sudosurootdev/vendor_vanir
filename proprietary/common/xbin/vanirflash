@@ -40,10 +40,10 @@ if [ -d /sdcard/TWRP ] || [ ${FORCE_CWM_FLASH} ]; then
 else
   echo "generating cwm flash script"
   mkdir -p /cache/recovery || exit 1
-  zipfile=/sdcard/vanir_rom.zip
+  zipfile=/data/media/0/vanir_rom.zip
   if [ $1 ] && [ -f $1 ]; then
     zipfile=$1
-  elif [ ! -e /sdcard/vanir_rom.zip ]; then
+  elif [ ! -e /data/media/0/vanir_rom.zip ]; then
     echo "You must copy the ROM zip you want to flash to /sdcard/vanir_rom.zip or pass its full path as an argument to this script"
     exit 1
   fi
