@@ -1,4 +1,6 @@
 #!/system/bin/sh
 
+[ -e "$*" ] || exit 0
+
 export PATH=/sbin:/system/sbin:/system/bin:/system/xbin
-/system/xbin/run-parts $*
+logwrapper run-parts $*
