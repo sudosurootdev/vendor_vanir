@@ -153,14 +153,11 @@ PRODUCT_COPY_FILES += \
     vendor/vanir/proprietary/common/bin/whitelist:system/addon.d/whitelist
 endif
 
-PRODUCT_PACKAGE_OVERLAYS += \
-    vendor/vanir/overlay/dictionaries
 
 # Required CM packages
 PRODUCT_PACKAGES += \
     Camera \
     Development \
-    LatinIME \
     su \
     BluetoothExt
 

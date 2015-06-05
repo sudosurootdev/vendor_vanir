@@ -14,6 +14,7 @@ PRODUCT_PACKAGES += \
     Stk
 
 PRODUCT_PACKAGES += \
+    LatinIME \
     SpeakerProximity \
     CellBroadcastReceiver \
     Mms \
@@ -24,5 +25,6 @@ PRODUCT_PACKAGES += \
 # Audio Packages
 include frameworks/base/data/sounds/AudioPackage7.mk
 
+PRODUCT_PACKAGE_OVERLAYS += vendor/vanir/overlay/dictionaries
 # Torch
 PRODUCT_PACKAGES += Torch
