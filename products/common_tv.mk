@@ -1,5 +1,5 @@
 # Inherit common CM stuff
-$(call inherit-product, vendor/vanir/config/common.mk)
+$(call inherit-product, vendor/vanir/products/common.mk)
 
 # Default notification/alarm sounds
 PRODUCT_PROPERTY_OVERRIDES += \
