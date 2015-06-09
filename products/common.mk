@@ -45,6 +45,15 @@ endif
 Vanir_BUILD=$(Vanir_Version)$(BUILD_DATE)
 endif
 
+ifndef CM_PLATFORM_SDK_VERSION
+  CM_PLATFORM_SDK_VERSION := 1
+endif
+PRODUCT_PROPERTY_OVERRIDES += \
+  ro.cm.build.version.plat.sdk=$(CM_PLATFORM_SDK_VERSION)
+
+-include $(WORKSPACE)/build_env/image-auto-bits.mk
+ 
+
 ifeq ($(PRODUCT_GMS_CLIENTID_BASE),)
 PRODUCT_PROPERTY_OVERRIDES += \
     ro.com.google.clientidbase=android-google
