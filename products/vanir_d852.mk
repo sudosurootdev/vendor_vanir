@@ -10,7 +10,7 @@ PRODUCT_COPY_FILES += \
     vendor/vanir/proprietary/boot_animations/1440x2560.zip:system/media/bootanimation.zip
 
 # Inherit device configuration
-$(call inherit-product, device/lge/d850/full_d850.mk)
+$(call inherit-product, device/lge/d852/full_d852.mk)
 
 # Inherit common vanir files.
 $(call inherit-product, vendor/vanir/products/common_phones.mk)
