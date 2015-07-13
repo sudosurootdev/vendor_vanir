@@ -46,7 +46,7 @@ Vanir_BUILD=$(Vanir_Version)$(BUILD_DATE)
 endif
 
 ifndef CM_PLATFORM_SDK_VERSION
-  CM_PLATFORM_SDK_VERSION := 1
+  CM_PLATFORM_SDK_VERSION := 2
 endif
 PRODUCT_PROPERTY_OVERRIDES += \
   ro.cm.build.version.plat.sdk=$(CM_PLATFORM_SDK_VERSION)
