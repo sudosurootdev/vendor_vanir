@@ -104,7 +104,7 @@ then
     cd $TMPDIR/$NAME
     unzip -q $BASE/$1
 
-    find . -name "*.png" | grep -v "\.9.png$" | tr "\n" " " | $XARGS optipng -nc -nb -O3 -quiet
+    find . -name "*.png" -print0 | $XARGS -0 --no-run-if-empty optipng -nc -nb -o3 -quiet
 
     cp $BASE/$1 $BASE/$1.old
 
