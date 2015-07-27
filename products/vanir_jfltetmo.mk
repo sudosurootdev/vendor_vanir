@@ -21,8 +21,11 @@ PRODUCT_COPY_FILES += \
 NO_DRM_BLOBS := true
 $(call inherit-product, vendor/vanir/products/common_phones.mk)
 
-# Unified device flag for Verizon permissions
-VZW_UNIFIED := true
+PRODUCT_BUILD_PROP_OVERRIDES += \
+  PRODUCT_NAME=jfltetmo \
+  TARGET_DEVICE=jfltetmo \
+  BUILD_FINGERPRINT="samsung/jfltetmo/jfltetmo:4.4.4/KTU84P/M919UVUFNK2:user/release-keys" \
+  PRIVATE_BUILD_DESC="jfltetmo-user 4.4.4 KTU84P M919UVUFNK2 release-keys"
 
 #Tagging
 PRODUCT_NAME := vanir_jfltetmo
