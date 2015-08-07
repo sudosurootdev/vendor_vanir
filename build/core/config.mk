@@ -24,5 +24,5 @@ FRAMEWORK_CM_PLATFORM_SYSTEM_API_FILE := $(TOPDIR)vendor/cmsdk/system-api/cm_sys
 FRAMEWORK_CM_PLATFORM_SYSTEM_REMOVED_API_FILE := $(TOPDIR)vendor/cmsdk/system-api/cm_system-removed.txt
 
 LOCAL_PATH := $(TOPDIR)$(shell dirname $(lastword $(MAKEFILE_LIST)))
-BUILD_MAVEN_PREBUILT := $(LOCAL_PATH)build/core/maven_artifact.mk
-PUBLISH_MAVEN_PREBUILT := $(LOCAL_PATH)build/core/maven_artifact_publish.mk
+BUILD_MAVEN_PREBUILT := $(LOCAL_PATH)maven_artifact.mk
+PUBLISH_MAVEN_PREBUILT := $(LOCAL_PATH)maven_artifact_publish.mk
