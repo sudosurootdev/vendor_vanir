@@ -239,6 +239,10 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     rsync
 
+# openvpwn
+PRODUCT_PACKAGES += \
+    openvpn
+
 # Theme engine
 PRODUCT_PACKAGES += \
     ThemeChooser \
