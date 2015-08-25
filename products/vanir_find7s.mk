@@ -10,7 +10,7 @@ PRODUCT_COPY_FILES += \
     vendor/vanir/proprietary/boot_animations/1080x1920.zip:system/media/bootanimation.zip
 
 # Inherit device configuration
-$(call inherit-product, device/oppo/find7s/full_find7s.mk)
+$(call inherit-product, device/oppo/find7s/find7s.mk)
 
 # Inherit common vanir files.
 $(call inherit-product, vendor/vanir/products/common_phones.mk)
