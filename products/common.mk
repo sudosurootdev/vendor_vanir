@@ -230,7 +230,8 @@ PRODUCT_PACKAGES += \
     procmem \
     procrank \
     sqlite3 \
-    strace
+    strace \
+    curl
 
 ifneq ($(TARGET_ARCH),arm64)
 PRODUCT_PACKAGES += \
