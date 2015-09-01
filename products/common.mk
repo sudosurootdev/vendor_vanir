@@ -26,7 +26,8 @@ PRODUCT_PACKAGES += \
     Launcher3 \
     LiveWallpapersPicker \
     VanirUpdater \
-    Profiles
+    Profiles \
+    CMSettingsProvider
 
 # QuickBoot (included automagically for non-oppo qcom devices)
 PRODUCT_PACKAGES += \
