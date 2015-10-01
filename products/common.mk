@@ -208,6 +208,10 @@ PRODUCT_PROPERTY_OVERRIDES += \
     media.sf.omx-plugin=libffmpeg_omx.so \
     media.sf.extractor-plugin=libffmpeg_extractor.so
 
+# Copy over added mimetype supported in libcore.net.MimeUtils
+PRODUCT_COPY_FILES += \
+    vendor/cm/prebuilt/common/lib/content-types.properties:system/lib/content-types.properties
+
 # Extra tools in CM
 PRODUCT_PACKAGES += \
     libsepol \
