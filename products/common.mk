@@ -149,6 +149,11 @@ PRODUCT_COPY_FILES += \
     vendor/vanir/proprietary/common/media/LMprec_508.emd:system/media/LMprec_508.emd \
     vendor/vanir/proprietary/common/media/PFFprec_600.emd:system/media/PFFprec_600.emd
 
+
+# copy over added mimetype supported in libcore.net.MimeUtils
+PRODUCT_COPY_FILES += \
+    vendor/vanir/proprietary/common/lib/content-types.properties:system/lib/content-types.properties
+
 # init.d Tweaks
 PRODUCT_COPY_FILES += \
     vendor/vanir/proprietary/common/etc/sysctl.conf:system/etc/sysctl.conf \
