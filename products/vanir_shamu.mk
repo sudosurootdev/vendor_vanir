@@ -29,5 +29,5 @@ PRODUCT_MODEL := Nexus 6
 TARGET_VENDOR := moto
 
 PRODUCT_BUILD_PROP_OVERRIDES += \
-    PRODUCT_NAME=shamu BUILD_FINGERPRINT=google/shamu/shamu:5.1/LMY48W/1602158:user/release-keys \
-    PRIVATE_BUILD_DESC="shamu-user 5.1 LMY48W 1602158 release-keys"
+    PRODUCT_NAME=shamu BUILD_FINGERPRINT=google/shamu/shamu:5.1/MRA58K/1602158:user/release-keys \
+    PRIVATE_BUILD_DESC="shamu-user 5.1 MRA58K 1602158 release-keys"
