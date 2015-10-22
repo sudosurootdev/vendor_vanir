@@ -194,7 +194,6 @@ PRODUCT_PACKAGES += \
 
 # Optional CM packages
 PRODUCT_PACKAGES += \
-    Basic \
     SoundRecorder \
     libemoji
 
