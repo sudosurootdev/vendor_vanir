@@ -222,6 +222,7 @@ PRODUCT_PACKAGES += \
     mkfs.f2fs \
     fsck.f2fs \
     fibmap.f2fs \
+    mkntfs \
     bash \
     vim \
     zip \
