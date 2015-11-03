@@ -17,9 +17,7 @@ PRODUCT_PACKAGES += \
     LatinIME \
     SpeakerProximity \
     CellBroadcastReceiver \
-    Mms \
-    SoundRecorder \
-    VoicePlus
+    messaging
 
 
 # Audio Packages
