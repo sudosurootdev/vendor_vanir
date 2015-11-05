@@ -27,7 +27,8 @@ PRODUCT_PACKAGES += \
     LiveWallpapersPicker \
     VanirUpdater \
     Profiles \
-    CMSettingsProvider
+    CMSettingsProvider \
+    ExactCalculator
 
 # QuickBoot (included automagically for non-oppo qcom devices)
 PRODUCT_PACKAGES += \
