@@ -210,7 +210,7 @@ PRODUCT_PROPERTY_OVERRIDES += \
 
 # Copy over added mimetype supported in libcore.net.MimeUtils
 PRODUCT_COPY_FILES += \
-    vendor/cm/prebuilt/common/lib/content-types.properties:system/lib/content-types.properties
+    vendor/vanir/prebuilt/common/lib/content-types.properties:system/lib/content-types.properties
 
 # Extra tools in CM
 PRODUCT_PACKAGES += \
