@@ -19,10 +19,7 @@ PRODUCT_PACKAGES += \
     CellBroadcastReceiver \
     messaging
 
-
 # Audio Packages
 include frameworks/base/data/sounds/AudioPackage7.mk
 
 PRODUCT_PACKAGE_OVERLAYS += vendor/vanir/overlay/dictionaries
-# Torch
-PRODUCT_PACKAGES += Torch
