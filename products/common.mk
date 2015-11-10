@@ -215,7 +215,9 @@ PRODUCT_PACKAGES += \
     mkfs.f2fs \
     fsck.f2fs \
     fibmap.f2fs \
-    mkntfs \
+    mkfs.ntfs \
+    fsck.ntfs \
+    mount.ntfs \
     bash \
     vim \
     zip \
@@ -223,8 +225,6 @@ PRODUCT_PACKAGES += \
     nano \
     htop \
     lsof \
-    ntfsfix \
-    ntfs-3g \
     gdbserver \
     micro_bench \
     oprofiled \
