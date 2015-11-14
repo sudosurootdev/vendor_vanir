@@ -220,6 +220,7 @@ PRODUCT_PACKAGES += \
     mount.ntfs \
     bash \
     vim \
+    wget \
     unzip \
     7z \
     bzip2 \
