@@ -220,11 +220,13 @@ PRODUCT_PACKAGES += \
     mount.ntfs \
     bash \
     vim \
+    unzip \
+    7z \
+    bzip2 \
     zip \
     unrar \
     nano \
     htop \
-    lsof \
     gdbserver \
     micro_bench \
     oprofiled \
