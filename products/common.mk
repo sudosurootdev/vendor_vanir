@@ -22,7 +22,8 @@ PRODUCT_PACKAGES += \
     LockClock \
     Terminal \
     Email \
-    Launcher3 \
+    Trebuchet \
+    AudioFX \
     LiveWallpapersPicker \
     VanirUpdater \
     Profiles \
