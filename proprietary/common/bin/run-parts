@@ -1,0 +1,8 @@
+#!/system/bin/sh
+[ $1 ] && cd $1
+for x in *; do
+  [ -f "$x" ] || continue
+  [ -x "$x" ] || continue
+
+  . $x
+done
