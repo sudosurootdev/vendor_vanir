@@ -1,8 +1,6 @@
 #!/system/bin/sh
-[ $1 ] && cd $1
 for x in *; do
-  [ -f "$x" ] || continue
-  [ -x "$x" ] || continue
-
-  . $x
+  [ -f "$1/$x" ] || continue
+  [ -x "$1/$x" ] || continue
+  . $1/$x
 done
