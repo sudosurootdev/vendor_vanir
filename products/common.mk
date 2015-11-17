@@ -54,7 +54,7 @@ ifndef CM_PLATFORM_REV
   CM_PLATFORM_REV := 0
 endif
 ifndef CM_PLATFORM_SDK_VERSION
-  CM_PLATFORM_SDK_VERSION := 3
+  CM_PLATFORM_SDK_VERSION := 4
 endif
 PRODUCT_PROPERTY_OVERRIDES += \
   ro.cm.build.version.plat.sdk=$(CM_PLATFORM_SDK_VERSION)
@@ -234,7 +234,8 @@ PRODUCT_PACKAGES += \
     procrank \
     sqlite3 \
     strace \
-    curl
+    curl \
+    pigz
 
 WITH_EXFAT ?= true
 ifeq ($(WITH_EXFAT),true)
