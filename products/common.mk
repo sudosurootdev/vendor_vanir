@@ -139,11 +139,6 @@ PRODUCT_COPY_FILES += \
 PRODUCT_COPY_FILES += \
     vendor/vanir/proprietary/common/etc/resolv.conf:system/etc/resolv.conf
 
-# Keyboard Files
-PRODUCT_COPY_FILES += \
-    vendor/vanir/proprietary/common/lib/libjni_latinime.so:system/lib/libjni_latinime.so \
-    vendor/vanir/proprietary/common/lib/libjni_latinime.so:system/lib/libjni_latinimegoogle.so
-
 # copy over added mimetype supported in libcore.net.MimeUtils
 PRODUCT_COPY_FILES += \
     vendor/vanir/proprietary/common/lib/content-types.properties:system/lib/content-types.properties
