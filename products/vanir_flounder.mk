@@ -45,8 +45,8 @@ ADDITIONAL_BUILD_PROPERTIES += \
 
 PRODUCT_BUILD_PROP_OVERRIDES += \
     PRODUCT_NAME=flounder \
-    BUILD_FINGERPRINT=google/volantis/flounder:5.1.1/LMY48I/2074855:user/release-keys \
-    PRIVATE_BUILD_DESC="volantis-user 5.1.1 LMY48I 2074855 release-keys"
+    BUILD_FINGERPRINT=google/volantis/flounder:6.0.0/MRA58K/2074855:user/release-keys \
+    PRIVATE_BUILD_DESC="volantis-user 6.0.0 MRA58K 2074855 release-keys"
 
 # Setup device specific product configuration.
 PRODUCT_NAME := vanir_flounder
@@ -54,5 +54,3 @@ PRODUCT_BRAND := google
 PRODUCT_DEVICE := flounder
 PRODUCT_MODEL := Nexus 9
 PRODUCT_MANUFACTURER := HTC
-
-PRODUCT_BUILD_PROP_OVERRIDES += PRODUCT_NAME=volantis TARGET_DEVICE=flounder BUILD_FINGERPRINT=google/volantis/flounder:5.1/LRX21L/1546449:user/release-keys PRIVATE_BUILD_DESC="volantis-user 5.1 LRX21L 1546449 release-keys"

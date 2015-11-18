@@ -28,5 +28,5 @@ TARGET_CONTINUOUS_SPLASH_ENABLED := true
 PRODUCT_BUILD_PROP_OVERRIDES += \
     TARGET_DEVICE=oneplus2 \
     PRODUCT_NAME=OnePlus2 \
-    BUILD_FINGERPRINT=OnePlus/OnePlus2/OnePlus2:5.1.1/MRA58K/1436933040:user/release-keys \
-    PRIVATE_BUILD_DESC="OnePlus2-user 5.1.1 LMY47V 28 dev-keys"
+    BUILD_FINGERPRINT=OnePlus/OnePlus2/OnePlus2:6.0.0/MRA58K/1436933040:user/release-keys \
+    PRIVATE_BUILD_DESC="OnePlus2-user 6.0.0 LMY47V 28 dev-keys"
