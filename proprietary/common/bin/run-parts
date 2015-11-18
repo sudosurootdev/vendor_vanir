@@ -1,6 +1,6 @@
 #!/system/bin/sh
-for x in *; do
-  [ -f "$1/$x" ] || continue
-  [ -x "$1/$x" ] || continue
-  . $1/$x
+for x in $1/*; do
+  [ -f "$x" ] || continue
+  [ -x "$x" ] || continue
+  . $x
 done
