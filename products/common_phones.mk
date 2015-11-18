@@ -21,3 +21,5 @@ PRODUCT_PACKAGES += \
 
 # Audio Packages
 include frameworks/base/data/sounds/AudioPackage7.mk
+
+PRODUCT_PACKAGE_OVERLAYS += vendor/vanir/overlay/dictionaries
