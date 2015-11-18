@@ -22,7 +22,4 @@ PRODUCT_BRAND := google
 PRODUCT_MODEL := Nexus 5
 PRODUCT_MANUFACTURER := LGE
 
-PRODUCT_BUILD_PROP_OVERRIDES += \
-    PRODUCT_NAME=hammerhead \
-    BUILD_FINGERPRINT=google/hammerhead/hammerhead:6.0.0/MRA58K/2167285:user/release-keys \
-    PRIVATE_BUILD_DESC="hammerhead-user 6.0.0 MRA58K 2167285 release-keys"
+PRODUCT_BUILD_PROP_OVERRIDES += PRODUCT_NAME=hammerhead BUILD_FINGERPRINT=google/hammerhead/hammerhead:6.0/MRA58N/2289998:user/release-keys PRIVATE_BUILD_DESC="hammerhead-user 6.0 MRA58N 2289998 release-keys"

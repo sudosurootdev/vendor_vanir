@@ -15,7 +15,7 @@ $(call inherit-product, vendor/vanir/products/multi_m7-common.mk)
 $(call inherit-product, vendor/vanir/products/vzw.mk)
 
 # Setup device specific product configuration.
-PRODUCT_BUILD_PROP_OVERRIDES += PRODUCT_NAME=m7wlv BUILD_ID=MRA58K BUILD_FINGERPRINT="VERIZON/HTCOneVZW/m7wlv:6.0/MRA58K/304035.1:user/release-k" PRIVATE_BUILD_DESC="3.11.605.1 CL304035 release-keys"
+PRODUCT_BUILD_PROP_OVERRIDES += PRODUCT_NAME=HTCOneVZW BUILD_ID=KTU84L BUILD_FINGERPRINT="VERIZON/HTCOneVZW/m7wlv:4.4.3/KTU84L/365669.2:user/release-keys" PRIVATE_BUILD_DESC="5.28.605.2 CL365669 release-keys"
 
 PRODUCT_NAME := vanir_m7vzw
 PRODUCT_DEVICE := m7vzw
