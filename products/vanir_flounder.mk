@@ -43,7 +43,7 @@ DEVICE_PACKAGE_OVERLAYS += device/htc/flounder/overlay-cm
 ADDITIONAL_BUILD_PROPERTIES += \
     persist.sys.isUsbOtgEnabled=true
 
-PRODUCT_BUILD_PROP_OVERRIDES += PRODUCT_NAME=flounder BUILD_FINGERPRINT=google/volantis/flounder:5.1.1/LMY48I/2074855:user/release-keys PRIVATE_BUILD_DESC="volantis-user 5.1.1 LMY48I 2074855 release-keys"
+PRODUCT_BUILD_PROP_OVERRIDES += PRODUCT_NAME=flounder BUILD_FINGERPRINT=google/volantis/flounder:6.0/MRA58N/2289998:user/release-keys PRIVATE_BUILD_DESC="volantis-user 6.0 MRA58N 2289998 release-keys"
 
 # Setup device specific product configuration.
 PRODUCT_NAME := vanir_flounder
