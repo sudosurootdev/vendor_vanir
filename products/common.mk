@@ -89,28 +89,19 @@ PRODUCT_PROPERTY_OVERRIDES += \
     ro.config.alarm_alert=Alarm_Beep_03.ogg \
     ro.modversion=$(Vanir_BUILD) \
     ro.goo.version=$(Vanir_BUILD) \
+    ro.goo.developerid=vanir \
     ro.rommanager.developerid=vanir \
     wifi.supplicant_scan_interval=300 \
-    persist.sys.root_access=3 \
-    persist.sys.purgeable_assets=1 \
     ro.build.selinux=1
 
-# nomnomnom
+ifneq ($(TARGET_BUILD_VARIANT),user)
+# Thank you, please drive thru!
 PRODUCT_PROPERTY_OVERRIDES += persist.sys.dun.override=0
+endif
 
-ifeq ($(VANIR_FAILSAFE),)
-# Build.Prop Tweaks
-PRODUCT_PROPERTY_OVERRIDES += \
-    mot.proximity.delay=20 \
-    net.bt.name=Android \
-    ro.ril.disable.power.collapse=0 \
-    ro.vold.umsdirtyratio=20 \
-    pm.sleep_mode=0 \
-    ro.config.nocheckin=1 \
-    ro.goo.developerid=vanir \
-    ro.kernel.android.checkjni=0 \
-    ro.kernel.checkjni=0 \
-    ro.lge.proximity.delay=20
+ifneq ($(TARGET_BUILD_VARIANT),eng)
+# Enable ADB authentication
+ADDITIONAL_DEFAULT_PROPERTIES += ro.adb.secure=1
 endif
 
 PRODUCT_COPY_FILES += \
