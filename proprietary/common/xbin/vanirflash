@@ -1,4 +1,4 @@
-#!/system/xbin/sh
+#!/system/bin/sh
 
 if [ -d /sdcard/TWRP ] || [ ${FORCE_CWM_FLASH} ]; then
   echo "Running in TWRP mode. If you are using CWM, then rename /sdcard/TWRP or set FORCE_CWM_FLASH in your environment"
