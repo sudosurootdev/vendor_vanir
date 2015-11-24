@@ -152,13 +152,13 @@ on property:sys.boot_completed=1
 # sysinit (/system/etc/init.d)
 service sysinit /system/bin/sysinit
     user root
-    group root
     oneshot
+    disabled
 
 service afterboot /system/bin/afterboot
     user root
-    group root
     oneshot
+    disabled
 
 # adb over network
 on property:service.adb.tcp.port=5555
