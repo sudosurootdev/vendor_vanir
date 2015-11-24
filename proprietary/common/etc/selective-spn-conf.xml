@@ -89,7 +89,6 @@
   <spnOverride numeric="40001"  spn="Azercell" />
   <spnOverride numeric="40002"  spn="Bakcell" />
   <spnOverride numeric="40003"  spn="FONEX" />
-  <!-- Azerbaijan -->
   <spnOverride numeric="40004"  spn="Nar Mobile" />
   <!-- Bahamas -->
   <spnOverride numeric="364390" spn="BaTelCo" />
@@ -1411,7 +1410,6 @@
   <spnOverride numeric="24003"  spn="Nordisk Mobiltelefon" />
   <spnOverride numeric="24010"  spn="SpringMobil" />
   <spnOverride numeric="24024"  spn="Sweden 2G" />
-  <spnOverride numeric="24024"  spn="Sweden 2G" />
   <spnOverride numeric="24005"  spn="Sweden 3G" />
   <spnOverride numeric="24014"  spn="TDC Mobil" />
   <spnOverride numeric="24007"  spn="Tele2Comviq" />
@@ -1652,22 +1650,9 @@
   <spnOverride numeric="310520" spn="VeriSign" />
   <spnOverride numeric="20404"  spn="Verizon" />
   <spnOverride numeric="246081" spn="Verizon" />
-  <spnOverride numeric="31000" spn="Verizon" />
-  <spnOverride numeric="31099" spn="Verizon" />
-  <spnOverride numeric="310002" spn="Verizon" />
-  <spnOverride numeric="310003" spn="Verizon" />
   <spnOverride numeric="310004" spn="Verizon" />
-  <spnOverride numeric="310005" spn="Verizon" />
-  <spnOverride numeric="310008" spn="Verizon" />
   <spnOverride numeric="310012" spn="Verizon" />
-  <spnOverride numeric="310480" spn="Verizon" />
-  <spnOverride numeric="310481" spn="Verizon" />
-  <spnOverride numeric="310483" spn="Verizon" />
-  <spnOverride numeric="310486" spn="Verizon" />
-  <spnOverride numeric="310489" spn="Verizon" />
   <spnOverride numeric="311480" spn="Verizon" />
-  <spnOverride numeric="311482" spn="Verizon" />
-  <spnOverride numeric="311485" spn="Verizon" />
   <spnOverride numeric="310450" spn="Viaero" />
   <spnOverride numeric="310180" spn="West Central" />
   <spnOverride numeric="310530" spn="West Virginia Wireless" />
