@@ -16,6 +16,10 @@ PRODUCT_PACKAGES += \
     org.cyanogenmod.platform \
     org.cyanogenmod.platform.xml
 
+# Include librsjni explicitly to workaround GMS issue
+PRODUCT_PACKAGES += \
+    librsjni
+
 # Build packages included in manifest
 PRODUCT_PACKAGES += \
     IndecentXposure \
