@@ -17,7 +17,7 @@ PRODUCT_COPY_FILES += \
 
 ## Device identifier. This must come after all inclusions
 PRODUCT_DEVICE := hammerhead
-PRODUCT_NAME := vanir_hammer
+PRODUCT_NAME := vanir_hammerhead
 PRODUCT_BRAND := google
 PRODUCT_MODEL := Nexus 5
 PRODUCT_MANUFACTURER := LGE
