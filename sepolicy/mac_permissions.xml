@@ -15,10 +15,10 @@
     <seinfo value="release" />
   </signer>
 
-  <!-- CMUpdater -->
+  <!-- VanirUpdater -->
   <signer signature="@RELEASE" >
-    <package name="com.cyanogenmod.updater" >
-      <seinfo value="cmupdater" />
+    <package name="com.vanir.updater" >
+      <seinfo value="vanirupdater" />
     </package>
   </signer>
 </policy>
