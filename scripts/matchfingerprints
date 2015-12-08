@@ -56,3 +56,4 @@ for x in $TOP/vendor/vanir/products/vanir_*.mk; do
   mv $RESULT $x
   rm -f $RESULT $AFTER
 done
+
