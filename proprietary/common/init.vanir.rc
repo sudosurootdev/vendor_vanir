@@ -162,9 +162,9 @@ service afterboot /system/bin/afterboot
     oneshot
     disabled
 
-service crond /system/bin/start-crond -f -l 7 -c /system/etc/cron/cron.d
+service crond /system/bin/crond -f -l 7 -c /system/etc/cron/cron.d
     user root
-    group shell
+    oneshot
     disabled
 
 # adb over network
