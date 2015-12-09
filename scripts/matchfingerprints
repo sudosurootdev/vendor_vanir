@@ -19,7 +19,7 @@ get_device_path() {
 }
 
 for x in $TOP/vendor/vanir/products/vanir_*.mk; do
-  [ $x ] && [ -x $x ] && grep -q PRODUCT_BUILD_PROP_OVERRIDES $x || continue
+  [ $x ] && grep -q PRODUCT_BUILD_PROP_OVERRIDES $x || continue
   RESULT=`mktemp`
   AFTER=`mktemp`
   grep -B100 PRODUCT_BUILD_PROP_OVERRIDES $x | grep -v PRODUCT_BUILD_PROP_OVERRIDES >> $RESULT
@@ -37,7 +37,7 @@ for x in $TOP/vendor/vanir/products/vanir_*.mk; do
   done
   rm -f .inoverrides
   file=`get_device_path $x`
-  if [ "$file" != "" ] && ! grep -q PRODUCT_BUILD_PROP_OVERRIDES $file; then
+  if [ "$file" == "" ] || ! grep -q PRODUCT_BUILD_PROP_OVERRIDES $file; then
     rm -f $RESULT $AFTER
     continue
   fi
@@ -47,13 +47,19 @@ for x in $TOP/vendor/vanir/products/vanir_*.mk; do
     fi
   done
   cat $AFTER >> $RESULT
-  echo -e "\n\n\n\n===== $x =====\n"
-  if which colordiff >&/dev/null; then
-    colordiff $x $RESULT
-  else
-    diff $x $RESULT
+  md5tmp=`mktemp`
+  md5sum $x > $md5tmp
+  cp $RESULT ${RESULT}.tmp
+  mv $x $RESULT
+  mv ${RESULT}.tmp $x
+  if ! md5sum --status -c $md5tmp; then
+    echo -e "\n\n\n===== $x =====\n"
+    if which colordiff >&/dev/null; then
+      colordiff $x $RESULT
+    else
+      diff $x $RESULT
+    fi
   fi
-  mv $RESULT $x
   rm -f $RESULT $AFTER
 done
 
