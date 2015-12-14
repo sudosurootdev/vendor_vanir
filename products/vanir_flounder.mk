@@ -17,11 +17,12 @@ PRODUCT_COPY_FILES += \
 # Enhanced NFC
 $(call inherit-product, vendor/vanir/config/nfc_enhanced.mk)
 
-# Inherit AOSP device configuration for grouper
-$(call inherit-product, device/htc/flounder/full_flounder.mk)
+# Inherit device configuration
+$(call inherit-product, device/htc/flounder/aosp_flounder.mk)
 
-# Inherit common product files.
-$(call inherit-product, vendor/vanir/products/common_tabs.mk)
+$(call inherit-product-if-exists, vendor/htc/flounder/device-vendor.mk)
+
+BOARD_NEEDS_VENDORIMAGE_SYMLINK := true
 
 # Inline kernel building
 KERNEL_TOOLCHAIN := $(ANDROID_BUILD_TOP)/prebuilts/gcc/$(HOST_OS)-x86/aarch64/aarch64-linux-android-4.9/bin
@@ -39,15 +40,13 @@ PRODUCT_PACKAGES += \
 # CM Overlays
 DEVICE_PACKAGE_OVERLAYS += device/htc/flounder/overlay-cm
 
-# Enable USB OTG (CAF commit to Settings)
-ADDITIONAL_BUILD_PROPERTIES += \
-    persist.sys.isUsbOtgEnabled=true
+PRODUCT_BUILD_PROP_OVERRIDES += \
+    PRODUCT_NAME=flounder \
+    BUILD_FINGERPRINT=google/volantis/flounder:6.0.1/MMB29K/2419427:user/release-keys \
+    PRIVATE_BUILD_DESC="volantis-user 6.0.1 MMB29K 2419427 release-keys" \
+    BUILD_ID=MMB29K
 
-PRODUCT_BUILD_PROP_OVERRIDES += PRODUCT_NAME=flounder BUILD_FINGERPRINT=google/volantis/flounder:6.0/MRA58N/2289998:user/release-keys PRIVATE_BUILD_DESC="volantis-user 6.0 MRA58N 2289998 release-keys"
-
-# Setup device specific product configuration.
+## Device identifier. This must come after all inclusions
 PRODUCT_NAME := vanir_flounder
 PRODUCT_BRAND := google
-PRODUCT_DEVICE := flounder
 PRODUCT_MODEL := Nexus 9
-PRODUCT_MANUFACTURER := HTC
