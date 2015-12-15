@@ -12,7 +12,7 @@ PRODUCT_PROPERTY_OVERRIDES += \
 $(call inherit-product, device/xiaomi/armani/full_armani.mk)
 
 # Inherit some common Vanir stuff
-$(call inherit-product, vendor/vanir/config/common_phones.mk)
+$(call inherit-product, vendor/vanir/products/common_phones.mk)
 
 # Device identifier. This must come after all inclusions.
 PRODUCT_DEVICE := armani
