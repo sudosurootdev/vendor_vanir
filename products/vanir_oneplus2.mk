@@ -11,6 +11,7 @@ PRODUCT_COPY_FILES += \
 
 # Inherit device configuration
 $(call inherit-product, device/oneplus/oneplus2/full_oneplus2.mk)
+$(call inherit-product, vendor/oneplus/oneplus2/oneplus2-vendor.mk)
 
 # Inherit common oneplus2 files.
 $(call inherit-product, vendor/vanir/products/common_phones.mk)
