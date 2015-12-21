@@ -175,6 +175,7 @@ PRODUCT_PACKAGES += \
 # Optional CM packages
 PRODUCT_PACKAGES += \
     SoundRecorder \
+    ScreenCast \
     libemoji
 
 # Stagefright FFMPEG plugin
