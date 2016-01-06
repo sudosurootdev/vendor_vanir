@@ -205,6 +205,7 @@ PRODUCT_PACKAGES += \
     wget \
     unzip \
     7z \
+    lib7z \
     bzip2 \
     zip \
     unrar \
