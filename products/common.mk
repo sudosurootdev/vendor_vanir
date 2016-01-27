@@ -111,7 +111,6 @@ endif
 PRODUCT_COPY_FILES += \
     vendor/vanir/proprietary/common/xbin/sysrw:system/xbin/sysrw \
     vendor/vanir/proprietary/common/xbin/sysro:system/xbin/sysro \
-    vendor/vanir/proprietary/common/xbin/cronlogger:system/xbin/cronlogger \
     vendor/vanir/proprietary/common/xbin/vanirflash:system/xbin/vanirflash \
     vendor/vanir/proprietary/common/init.vanir.rc:root/init.vanir.rc \
     vendor/vanir/proprietary/common/bin/otasigcheck.sh:system/bin/otasigcheck.sh \
@@ -139,10 +138,7 @@ PRODUCT_COPY_FILES += \
 PRODUCT_COPY_FILES += \
     vendor/vanir/proprietary/common/etc/sysctl.conf:system/etc/sysctl.conf \
     vendor/vanir/proprietary/common/etc/init.d/98SONIC_SHOCK:system/etc/init.d/98SONIC_SHOCK \
-    vendor/vanir/proprietary/common/etc/init.d/90userinit:system/etc/init.d/90userinit \
-    vendor/vanir/proprietary/common/etc/cron/root:system/etc/cron/cron.d/root \
-    vendor/vanir/proprietary/common/etc/cron/cron.minutely/00nicetweaks:/system/etc/cron/cron.minutely/00nicetweaks \
-    vendor/vanir/proprietary/common/etc/cron/cron.daily/00sqlitespeed:/system/etc/cron/cron.daily/00sqlitespeed
+    vendor/vanir/proprietary/common/etc/init.d/90userinit:system/etc/init.d/90userinit
 
 # system and persistent /data boot.d Tweaks - triggered when ro.boot_complete is set to 1
 PRODUCT_COPY_FILES += \

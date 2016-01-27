@@ -151,7 +151,6 @@ on boot
 
 on property:sys.boot_completed=1
     start afterboot
-    start crond
  
 # sysinit (/system/etc/init.d)
 service sysinit /system/bin/sysinit
@@ -160,11 +159,6 @@ service sysinit /system/bin/sysinit
     disabled
 
 service afterboot /system/bin/afterboot
-    user root
-    oneshot
-    disabled
-
-service crond /system/bin/crond -f -l 7 -c /system/etc/cron/cron.d
     user root
     oneshot
     disabled
