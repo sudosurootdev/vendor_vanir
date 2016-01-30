@@ -258,6 +258,10 @@ PRODUCT_PACKAGES += \
 PRODUCT_COPY_FILES += \
     vendor/vanir/config/permissions/org.cyanogenmod.theme.xml:system/etc/permissions/org.cyanogenmod.theme.xml
 
+# Live lockscreen
+PRODUCT_COPY_FILES += \
+    vendor/vanir/config/permissions/org.cyanogenmod.livelockscreen.xml:system/etc/permissions/org.cyanogenmod.livelockscreen.xml
+
 ## STREAMING DMESG?
 PRODUCT_PACKAGES += \
     klogripper
