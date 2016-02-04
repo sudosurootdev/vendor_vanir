@@ -16,7 +16,7 @@ DEVICE_PACKAGE_OVERLAYS += device/huawei/angler/overlay-cm
 ## Device identifier. This must come after all inclusions
 PRODUCT_NAME := vanir_angler
 PRODUCT_BRAND := Android
-PRODUCT_MODEL := AOSP on angler
+PRODUCT_MODEL := Nexus 6P
 
 TARGET_VENDOR := huawei
 
