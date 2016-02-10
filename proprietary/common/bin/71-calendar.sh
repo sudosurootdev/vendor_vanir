@@ -11,10 +11,20 @@ export OUTFD=$(ps | grep -v "grep" | grep -o -E "update_binary(.*)" | cut -d " "
 case "$1" in
   post-restore)
     if [ ! -d /data/app ]; then
-      echo "data isn't mounted! plz inform nuclearmistake"
-    elif ls /data/app | grep -q com.google.android.calendar-; then
+      if mount /data; then
+        IMOUNTED=0
+      else
+        echo "mount /data failed! plz inform nuclearmistake"
+      fi
+    fi
+    if [ -d /data/app ] && ls /data/app | grep -q com.google.android.calendar-; then
       echo "Auto-removing AOSP calendar from /system because you have installed Google calendar from the Play store"
       rm -Rf $S/app/Calendar
+    fi
+    if [ $IMOUNTED ]; then
+      if ! umount /data; then
+        echo "umount /data failed"
+      fi
     fi
   ;;
   *)
