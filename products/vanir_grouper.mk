@@ -1,13 +1,6 @@
 #Squisher Choosing
 DHO_VENDOR := vanir
 
-KERNEL_SPAM := Faux Kernel v013u IN THE H1ZNOUSE
-
-PRODUCT_PACKAGES += \
-    Camera \
-    LiveWallpapersPicker \
-    Mira4U
-
 # Run these first or they will not stick
 PRODUCT_PROPERTY_OVERRIDES += \
     ro.goo.rom=vanir-GROUPER
