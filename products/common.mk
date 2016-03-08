@@ -28,7 +28,8 @@ PRODUCT_PACKAGES += \
     VanirUpdater \
     Profiles \
     CMSettingsProvider \
-    ExactCalculator
+    ExactCalculator \
+		LiveLockScreenService
 
 # QuickBoot (included automagically for non-oppo qcom devices)
 PRODUCT_PACKAGES += \
