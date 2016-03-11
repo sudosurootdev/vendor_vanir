@@ -1,7 +1,7 @@
-PRODUCT_PACKAGE_OVERLAYS += vendor/vanir/overlay/common
+DEVICE_PACKAGE_OVERLAYS += vendor/vanir/overlay/common
 
 #optional theme files
-PRODUCT_PACKAGE_OVERLAYS += vendor/vanir/overlay/theme
+DEVICE_PACKAGE_OVERLAYS += vendor/vanir/overlay/theme
 
 # DSPManager and NFC
 $(call inherit-product, vendor/vanir/products/media_sexificators.mk)
