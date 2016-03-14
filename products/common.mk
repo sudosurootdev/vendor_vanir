@@ -23,6 +23,7 @@ PRODUCT_PACKAGES += \
 # Build packages included in manifest
 PRODUCT_PACKAGES += \
     IndecentXposure \
+    Exchange2 \
     LockClock \
     Terminal \
     Email \
