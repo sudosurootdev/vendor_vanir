@@ -28,6 +28,7 @@ LOCAL_SRC_FILES_32 := arm64/app/com.google.android.webview/lib/arm/libwebviewchr
 include $(BUILD_PREBUILT)
 
 else
+ifneq ($(filter arm,$(TARGET_ARCH)),)
 
 include $(CLEAR_VARS)
 LOCAL_MODULE := webview
@@ -51,4 +52,9 @@ LOCAL_PROPRIETARY_MODULE := true
 LOCAL_SRC_FILES := arm/app/com.google.android.webview/lib/arm/libwebviewchromium.so
 include $(BUILD_PREBUILT)
 
+else
+
+$(warning $(TARGET_ARCH) does not have a prebuilt webview in vendor/vanir.)
+
+endif
 endif
