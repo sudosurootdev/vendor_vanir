@@ -32,6 +32,9 @@ PRODUCT_PACKAGES += \
     LiveLockScreenService \
     WeatherProvider
 
+# Weather
+PRODUCT_PACKAGES += \
+    OpenWeatherMapProvider
 
 # QuickBoot (included automagically for non-oppo qcom devices)
 PRODUCT_PACKAGES += \
