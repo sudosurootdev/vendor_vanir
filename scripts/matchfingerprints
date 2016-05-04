@@ -60,6 +60,6 @@ for x in $TOP/vendor/vanir/products/vanir_*.mk; do
       diff $x $RESULT
     fi
   fi
-  rm -f $RESULT $AFTER
+  rm -f $RESULT $AFTER $md5tmp
 done
 
