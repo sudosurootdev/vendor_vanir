@@ -30,7 +30,8 @@ PRODUCT_PACKAGES += \
     CMSettingsProvider \
     ExactCalculator \
     LiveLockScreenService \
-    WeatherProvider
+    WeatherProvider \
+		DataUsageProvider
 
 # Weather
 PRODUCT_PACKAGES += \
