@@ -7,7 +7,7 @@ PRODUCT_COPY_FILES += \
 DHO_VENDOR := vanir
 
 # Inherit device configuration
-$(call inherit-product, device/htc/ville/device_ville.mk)
+$(call inherit-product, device/htc/ville/full_ville.mk)
 
 # Inherit common phone stuff
 $(call inherit-product, vendor/vanir/products/common_phones.mk)
