@@ -6,7 +6,7 @@ PRODUCT_PROPERTY_OVERRIDES += \
     ro.goo.rom=vanir-jewel
 
 # Inherit AOSP device configuration for toro.
-$(call inherit-product, device/htc/jewel/jewel.mk)
+$(call inherit-product, device/htc/jewel/full_jewel.mk)
 
 # Inherit common phone stuff
 $(call inherit-product, vendor/vanir/products/common_phones.mk)
