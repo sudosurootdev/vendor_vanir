@@ -1,3 +1,6 @@
+#Squisher Choosing
+DHO_VENDOR := vanir
+
 # Boot Animation
 PRODUCT_COPY_FILES += \
     vendor/vanir/proprietary/boot_animations/720x1280.zip:system/media/bootanimation.zip
