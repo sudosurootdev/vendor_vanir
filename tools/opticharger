@@ -25,6 +25,8 @@ fi
 
 if [ "$APKCERTS" = "" ];
 then
+    echo "APKCERTS is not defined"
+    exit 1
     if [ "$TARGET_BUILD_VARIANT" = "userdebug" ] || [ "$TARGET_BUILD_VARIANT" = "user" ]; then
        TARGET_BUILD_VARIANT="eng"
     fi
