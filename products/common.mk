@@ -33,7 +33,8 @@ PRODUCT_PACKAGES += \
     ExactCalculator \
     LiveLockScreenService \
     WeatherProvider \
-		DataUsageProvider
+    DataUsageProvider \
+    WallpaperPicker
 
 # Weather
 PRODUCT_PACKAGES += \
