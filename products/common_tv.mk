@@ -1,6 +1,8 @@
 # Inherit common CM stuff
 $(call inherit-product, vendor/vanir/products/common.mk)
 
+PRODUCT_SIZE := mini
+
 # Default notification/alarm sounds
 PRODUCT_PROPERTY_OVERRIDES += \
     ro.config.notification_sound=Argon.ogg \

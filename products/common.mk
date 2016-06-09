@@ -1,5 +1,7 @@
 DEVICE_PACKAGE_OVERLAYS += vendor/vanir/overlay/common
 
+PRODUCT_SIZE := full
+
 #optional theme files
 DEVICE_PACKAGE_OVERLAYS += vendor/vanir/overlay/theme
 
