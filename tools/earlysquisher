@@ -1,5 +1,5 @@
 #!/bin/bash
-if [ $DISABLE_SQUISHER ]; then
+if [ ! $ENABLE_SQUISHER ]; then
   exit 0
 fi
 export ANDROID_BUILD_TOP=$ANDROID_BUILD_TOP
