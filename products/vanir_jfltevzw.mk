@@ -1,12 +1,10 @@
 #Squisher Choosing
 DHO_VENDOR := vanir
 
-PRODUCT_PROPERTY_OVERRIDES += \
-    ro.goo.rom=vanir-jfltevzw
+PRODUCT_PROPERTY_OVERRIDES += ro.goo.rom=vanir-jfltevzw
 
 # Boot Animation
-PRODUCT_COPY_FILES += \
-    vendor/vanir/proprietary/boot_animations/1080x1920.zip:system/media/bootanimation.zip
+PRODUCT_COPY_FILES += vendor/vanir/proprietary/boot_animations/1080x1920.zip:system/media/bootanimation.zip
 
 # Inherit device repo
 $(call inherit-product, device/samsung/jfltevzw/full_jfltevzw.mk)

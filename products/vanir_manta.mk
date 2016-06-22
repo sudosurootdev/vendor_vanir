@@ -1,8 +1,7 @@
 #Squisher Choosing
 DHO_VENDOR := vanir
 
-PRODUCT_PROPERTY_OVERRIDES := \
-    drm.service.enabled=true
+PRODUCT_PROPERTY_OVERRIDES := drm.service.enabled=true
 
 # Inherit AOSP device configuration for Manta.
 $(call inherit-product, device/samsung/manta/full_manta.mk)
@@ -10,15 +9,13 @@ $(call inherit-product, device/samsung/manta/full_manta.mk)
 # Inherit common product files.
 $(call inherit-product, vendor/vanir/products/common_tabs.mk)
 
-PRODUCT_PACKAGES += \
-    LiveWallpapersPicker
+PRODUCT_PACKAGES += LiveWallpapersPicker
 
 # Boot Animation
-PRODUCT_COPY_FILES += \
-   vendor/vanir/proprietary/boot_animations/1280x800.zip:system/media/bootanimation.zip
+PRODUCT_COPY_FILES += vendor/vanir/proprietary/boot_animations/1280x800.zip:system/media/bootanimation.zip
 
 # Tablet Overlays no radios
-    PRODUCT_PACKAGE_OVERLAYS += vendor/vanir/overlay/tab_no_radio
+PRODUCT_PACKAGE_OVERLAYS += vendor/vanir/overlay/tab_no_radio
 
 PRODUCT_NAME := vanir_manta
 PRODUCT_DEVICE := manta

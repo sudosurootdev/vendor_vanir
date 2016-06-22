@@ -1,11 +1,9 @@
 #Squisher Choosing
 DHO_VENDOR := vanir
 
-PRODUCT_PROPERTY_OVERRIDES += \
-    ro.goo.rom=vanir-lux
+PRODUCT_PROPERTY_OVERRIDES += ro.goo.rom=vanir-lux
 
-PRODUCT_COPY_FILES += \
-    vendor/vanir/proprietary/boot_animations/1080x1920.zip:system/media/bootanimation.zip
+PRODUCT_COPY_FILES += vendor/vanir/proprietary/boot_animations/1080x1920.zip:system/media/bootanimation.zip
 
 # Inherit device configuration
 $(call inherit-product, device/motorola/lux/full_lux.mk)

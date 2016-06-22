@@ -2,15 +2,13 @@
 DHO_VENDOR := vanir
 
 # Run these first or they will not stick
-PRODUCT_PROPERTY_OVERRIDES += \
-    ro.goo.rom=vanir-pollux_windy
+PRODUCT_PROPERTY_OVERRIDES += ro.goo.rom=vanir-pollux_windy
 
 # Tablet Overlays with radios
-    PRODUCT_PACKAGE_OVERLAYS += vendor/vanir/overlay/tab_no_radio
+PRODUCT_PACKAGE_OVERLAYS += vendor/vanir/overlay/tab_no_radio
 
 # Boot Animation
-PRODUCT_COPY_FILES += \
-    vendor/vanir/proprietary/boot_animations/1080x1920.zip:system/media/bootanimation.zip
+PRODUCT_COPY_FILES += vendor/vanir/proprietary/boot_animations/1080x1920.zip:system/media/bootanimation.zip
 
 # Inherit AOSP device configuration for Tablet Z Wifi
 $(call inherit-product, device/sony/pollux_windy/full_pollux_windy.mk)

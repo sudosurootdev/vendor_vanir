@@ -1,12 +1,10 @@
 #Squisher Choosing
 DHO_VENDOR := vanir
 
-PRODUCT_PROPERTY_OVERRIDES += \
-    ro.goo.rom=vanir-YUGA
+PRODUCT_PROPERTY_OVERRIDES += ro.goo.rom=vanir-YUGA
 
 # Boot Animation
-PRODUCT_COPY_FILES += \
-    vendor/vanir/proprietary/boot_animations/1080x1920.zip:system/media/bootanimation.zip
+PRODUCT_COPY_FILES += vendor/vanir/proprietary/boot_animations/1080x1920.zip:system/media/bootanimation.zip
 
 # Inherit AOSP device configuration for yuga.
 $(call inherit-product, device/sony/yuga/full_yuga.mk)

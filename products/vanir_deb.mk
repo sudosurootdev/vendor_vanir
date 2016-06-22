@@ -4,17 +4,15 @@ DHO_VENDOR := vanir
 KERNEL_SPAM := CM-AOSP 3.4.0-g8e41961
 
 # Run these first or they will not stick
-PRODUCT_PROPERTY_OVERRIDES += \
-    ro.goo.rom=vanir-DEB
+PRODUCT_PROPERTY_OVERRIDES += ro.goo.rom=vanir-DEB
 
 # Tablet Overlays with radios
-    PRODUCT_PACKAGE_OVERLAYS += vendor/vanir/overlay/tab_radio
+PRODUCT_PACKAGE_OVERLAYS += vendor/vanir/overlay/tab_radio
 
 # GSM APNs and Simcard app
 
 # Boot Animation
-PRODUCT_COPY_FILES += \
-    vendor/vanir/proprietary/boot_animations/1080x1920.zip:system/media/bootanimation.zip
+PRODUCT_COPY_FILES += vendor/vanir/proprietary/boot_animations/1080x1920.zip:system/media/bootanimation.zip
 
 $(call inherit-product, device/asus/deb/full_deb.mk)
 

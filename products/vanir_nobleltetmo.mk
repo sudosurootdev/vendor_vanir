@@ -1,6 +1,5 @@
 # Boot Animation
-PRODUCT_COPY_FILES += \
-    vendor/vanir/proprietary/boot_animations/1440x2560.zip:system/media/bootanimation.zip
+PRODUCT_COPY_FILES += vendor/vanir/proprietary/boot_animations/1440x2560.zip:system/media/bootanimation.zip
 
 $(call inherit-product, device/samsung/nobleltetmo/nobleltetmo.mk)
 $(call inherit-product, device/samsung/noblelte-common/noblelte.mk)

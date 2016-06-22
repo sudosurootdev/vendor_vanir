@@ -1,8 +1,7 @@
 # Release name
 PRODUCT_RELEASE_NAME := ville
 
-PRODUCT_COPY_FILES += \
-    vendor/vanir/proprietary/boot_animations/540x960.zip:system/media/bootanimation.zip 
+PRODUCT_COPY_FILES += vendor/vanir/proprietary/boot_animations/540x960.zip:system/media/bootanimation.zip
 #Squisher Choosing
 DHO_VENDOR := vanir
 

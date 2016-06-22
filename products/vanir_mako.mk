@@ -1,17 +1,10 @@
 #Squisher Choosing
 DHO_VENDOR := vanir
 
-PRODUCT_PROPERTY_OVERRIDES += \
-    drm.service.enabled=true \
-    ro.config.vc_call_vol_steps=7 \
-    ring.delay=0 \
-    ro.telephony.call_ring.delay=50 \
-    ro.ril.fast.dormancy.rule=0 \
-    ro.goo.rom=vanir-MAKO
+PRODUCT_PROPERTY_OVERRIDES += drm.service.enabled=true ro.config.vc_call_vol_steps=7 ring.delay=0 ro.telephony.call_ring.delay=50 ro.ril.fast.dormancy.rule=0 ro.goo.rom=vanir-MAKO
 
 # Boot animation
-PRODUCT_COPY_FILES += \
-    vendor/vanir/proprietary/boot_animations/768x1280.zip:system/media/bootanimation.zip
+PRODUCT_COPY_FILES += vendor/vanir/proprietary/boot_animations/768x1280.zip:system/media/bootanimation.zip
 
 # Inherit AOSP device configuration for mako.
 $(call inherit-product, device/lge/mako/full_mako.mk)

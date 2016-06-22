@@ -1,9 +1,7 @@
 #Squisher Choosing
 DHO_VENDOR := vanir
 
-PRODUCT_PROPERTY_OVERRIDES += \
-    drm.service.enabled=true \
-    ro.goo.rom=vanir-m7vzw
+PRODUCT_PROPERTY_OVERRIDES += drm.service.enabled=true ro.goo.rom=vanir-m7vzw
 
 # Inherit AOSP device configuration for HTC One.
 $(call inherit-product, device/htc/m7vzw/full_m7vzw.mk)

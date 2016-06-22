@@ -1,13 +1,10 @@
 # Squisher Choosing
 DHO_VENDOR := vanir
 
-PRODUCT_PROPERTY_OVERRIDES += \
-    ro.goo.rom=vanir-togari \
-    drm.service.enabled=true
+PRODUCT_PROPERTY_OVERRIDES += ro.goo.rom=vanir-togari drm.service.enabled=true
 
 # Boot Animation
-PRODUCT_COPY_FILES += \
-    vendor/vanir/proprietary/boot_animations/1080x1920.zip:system/media/bootanimation.zip
+PRODUCT_COPY_FILES += vendor/vanir/proprietary/boot_animations/1080x1920.zip:system/media/bootanimation.zip
 
 # Inherit Vanir common Phone stuff.
 $(call inherit-product, vendor/vanir/products/common_phones.mk)

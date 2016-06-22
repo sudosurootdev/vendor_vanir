@@ -1,13 +1,11 @@
 # VanirAOSP (to the power of Frey, to the hammer of Thor)
 
-PRODUCT_PROPERTY_OVERRIDES += \
-    ro.goo.rom=vanir-tomato
+PRODUCT_PROPERTY_OVERRIDES += ro.goo.rom=vanir-tomato
 
 $(call inherit-product, device/yu/tomato/full_tomato.mk)
 
 # Boot Animation
-PRODUCT_COPY_FILES += \
-    vendor/vanir/proprietary/boot_animations/720x1280.zip:system/media/bootanimation.zip
+PRODUCT_COPY_FILES += vendor/vanir/proprietary/boot_animations/720x1280.zip:system/media/bootanimation.zip
 
 # Inherit common product files.
 NO_DRM_BLOBS := true

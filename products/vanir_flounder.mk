@@ -4,15 +4,13 @@ DHO_VENDOR := vanir
 KERNEL_SPAM := AOSP 3.10.0 Prebuilt
 
 # Run these first or they will not stick
-PRODUCT_PROPERTY_OVERRIDES += \
-    ro.goo.rom=vanir-FLOUNDER
+PRODUCT_PROPERTY_OVERRIDES += ro.goo.rom=vanir-FLOUNDER
 
 # Tablet Overlays no radios
 PRODUCT_PACKAGE_OVERLAYS += vendor/vanir/overlay/tab_no_radio
 
 # Boot Animation
-PRODUCT_COPY_FILES += \
-    vendor/vanir/proprietary/boot_animations/832x520.zip:system/media/bootanimation.zip
+PRODUCT_COPY_FILES += vendor/vanir/proprietary/boot_animations/832x520.zip:system/media/bootanimation.zip
 
 # Enhanced NFC
 $(call inherit-product, vendor/vanir/config/nfc_enhanced.mk)
@@ -34,8 +32,7 @@ BOARD_KERNEL_CMDLINE := androidboot.selinux=enforcing
 TARGET_PREBUILT_KERNEL := false
 
 # Extra Packages
-PRODUCT_PACKAGES += \
-    com.android.nfc_extras
+PRODUCT_PACKAGES += com.android.nfc_extras
 
 # CM Overlays
 DEVICE_PACKAGE_OVERLAYS += device/htc/flounder/overlay-cm

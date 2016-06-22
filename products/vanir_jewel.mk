@@ -1,9 +1,7 @@
 #Squisher Choosing
 DHO_VENDOR := vanir
 
-PRODUCT_PROPERTY_OVERRIDES += \
-    drm.service.enabled=true \
-    ro.goo.rom=vanir-jewel
+PRODUCT_PROPERTY_OVERRIDES += drm.service.enabled=true ro.goo.rom=vanir-jewel
 
 # Inherit AOSP device configuration for toro.
 $(call inherit-product, device/htc/jewel/full_jewel.mk)
@@ -11,8 +9,7 @@ $(call inherit-product, device/htc/jewel/full_jewel.mk)
 # Inherit common phone stuff
 $(call inherit-product, vendor/vanir/products/common_phones.mk)
 
-PRODUCT_COPY_FILES += \
-    vendor/vanir/proprietary/boot_animations/800x1280.zip:system/media/bootanimation.zip 
+PRODUCT_COPY_FILES += vendor/vanir/proprietary/boot_animations/800x1280.zip:system/media/bootanimation.zip
 
 # Setup device specific product configuration.
 PRODUCT_NAME := vanir_jewel

@@ -18,20 +18,55 @@ get_device_path() {
   done
 }
 
+checkif() {
+  if echo $line | grep -q ifeq || echo $line | grep -q ifneq; then
+    if [ -e .inif ]; then
+      echo "`expr $(cat .inif) + 1`" > .inif
+    else
+      echo 1 > .inif
+    fi
+    echo "`cat .inif` $line"
+  fi
+}
+
+checkendif() {
+  if echo $line | grep -q endif; then
+    if [ -f .inif ]; then
+      decremented=`expr $(cat .inif) - 1`
+      if [ $decremented = 0 ]; then
+        rm -f .inif
+      else
+        echo $decremented > .inif
+      fi
+      echo "$decremented $line"
+    else
+      echo "Invalid handling of ifs"
+      exit 1
+    fi
+  fi
+}
+
 for x in $TOP/vendor/vanir/products/vanir_*.mk; do
   [ $x ] && grep -q PRODUCT_BUILD_PROP_OVERRIDES $x || continue
   RESULT=`mktemp`
   AFTER=`mktemp`
-  grep -B100 PRODUCT_BUILD_PROP_OVERRIDES $x | grep -v PRODUCT_BUILD_PROP_OVERRIDES >> $RESULT
+  grep -B100 PRODUCT_BUILD_PROP_OVERRIDES $x | grep -v PRODUCT_BUILD_PROP_OVERRIDES | while read line; do
+    checkif
+    checkendif
+    echo $line >> $RESULT
+  done
   grep -A100 PRODUCT_BUILD_PROP_OVERRIDES $x | while read line; do
+    checkif
     if echo $line | grep -q PRODUCT_BUILD_PROP_OVERRIDES; then
       touch .inoverrides
     elif [ -f .inoverrides ]; then
+      checkendif
       if ! echo $line | grep -q \\\\; then
         rm .inoverrides
         echo $line >> $AFTER
       fi
     else
+      checkendif
       echo $line >> $AFTER
     fi
   done
@@ -42,10 +77,23 @@ for x in $TOP/vendor/vanir/products/vanir_*.mk; do
     continue
   fi
   grep -A100 PRODUCT_BUILD_PROP_OVERRIDES $file | while read line; do
+    checkif
+    checkendif
     if echo $line | grep -q PRODUCT_BUILD_PROP_OVERRIDES || echo $line | grep -q \\\\; then
       echo $line >> $RESULT
     fi
   done
+  while [ -e .inif ]; do
+    decremented=`expr $(cat .inif) - 1`
+    if [ $decremented = 0 ]; then
+      rm -f .inif
+    else
+      echo $decremented > .inif
+    fi
+    echo "$decremented $line"
+    echo "endif" >> $RESULT
+  done
+  rm -f .inif
   cat $AFTER >> $RESULT
   md5tmp=`mktemp`
   md5sum $x > $md5tmp

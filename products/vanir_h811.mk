@@ -1,12 +1,10 @@
 #Squisher Choosing
 DHO_VENDOR := vanir
 
-PRODUCT_PROPERTY_OVERRIDES += \
-    ro.goo.rom=vanir-h811
+PRODUCT_PROPERTY_OVERRIDES += ro.goo.rom=vanir-h811
 
 # Boot Animation
-PRODUCT_COPY_FILES += \
-    vendor/vanir/proprietary/boot_animations/1440x2560.zip:system/media/bootanimation.zip
+PRODUCT_COPY_FILES += vendor/vanir/proprietary/boot_animations/1440x2560.zip:system/media/bootanimation.zip
 
 # Inherit device configuration
 $(call inherit-product, device/lge/h811/full_h811.mk)

@@ -1,9 +1,7 @@
 #Squisher Choosing
 DHO_VENDOR := vanir
 
-PRODUCT_PROPERTY_OVERRIDES += \
-    drm.service.enabled=true \
-    ro.goo.rom=vanir-ls980
+PRODUCT_PROPERTY_OVERRIDES += drm.service.enabled=true ro.goo.rom=vanir-ls980
 
 # Inherit device configuration
 $(call inherit-product, device/lge/ls980/ls980.mk)

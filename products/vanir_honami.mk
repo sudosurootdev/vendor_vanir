@@ -4,13 +4,12 @@ DHO_VENDOR := vanir
 # Variable for zip installerscript spam about kernel
 KERNEL_SPAM := CM Kernel
 
-PRODUCT_PROPERTY_OVERRIDES += \
-    drm.service.enabled=true \
-    ro.goo.rom=vanir-honami
+PRODUCT_PROPERTY_OVERRIDES +=
+drm.service.enabled=true
+ro.goo.rom=vanir-honami
 
 # Boot Animation
-PRODUCT_COPY_FILES += \
-    vendor/vanir/proprietary/boot_animations/1080x1920.zip:system/media/bootanimation.zip
+PRODUCT_COPY_FILES += vendor/vanir/proprietary/boot_animations/1080x1920.zip:system/media/bootanimation.zip
 
 # Inherit AOSP device configuration for Z1.
 $(call inherit-product, device/sony/honami/full_honami.mk)
