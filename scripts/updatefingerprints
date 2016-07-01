@@ -20,6 +20,7 @@ get_device_path() {
 
 checkif() {
   if echo $line | grep -q ifeq || echo $line | grep -q ifneq; then
+    if echo $line | grep -q SIGN_BUILD; then return 1; fi
     if [ -e .inif ]; then
       echo "`expr $(cat .inif) + 1`" > .inif
     else
@@ -27,6 +28,7 @@ checkif() {
     fi
     echo "`cat .inif` $line"
   fi
+  return 0
 }
 
 checkendif() {
@@ -40,10 +42,10 @@ checkendif() {
       fi
       echo "$decremented $line"
     else
-      echo "Invalid handling of ifs"
-      exit 1
+      return 1
     fi
   fi
+  return 0
 }
 
 for x in $TOP/vendor/vanir/products/vanir_*.mk; do
@@ -51,23 +53,24 @@ for x in $TOP/vendor/vanir/products/vanir_*.mk; do
   RESULT=`mktemp`
   AFTER=`mktemp`
   grep -B100 PRODUCT_BUILD_PROP_OVERRIDES $x | grep -v PRODUCT_BUILD_PROP_OVERRIDES | while read line; do
-    checkif
-    checkendif
-    echo $line >> $RESULT
+    if checkif && checkendif; then
+      echo $line >> $RESULT
+    fi
   done
   grep -A100 PRODUCT_BUILD_PROP_OVERRIDES $x | while read line; do
-    checkif
+    if ! checkif; then continue; fi
     if echo $line | grep -q PRODUCT_BUILD_PROP_OVERRIDES; then
       touch .inoverrides
     elif [ -f .inoverrides ]; then
-      checkendif
+      if ! checkendif; then continue; fi
       if ! echo $line | grep -q \\\\; then
         rm .inoverrides
         echo $line >> $AFTER
       fi
     else
-      checkendif
-      echo $line >> $AFTER
+      if checkendif; then
+        echo $line >> $AFTER
+      fi
     fi
   done
   rm -f .inoverrides
@@ -77,10 +80,10 @@ for x in $TOP/vendor/vanir/products/vanir_*.mk; do
     continue
   fi
   grep -A100 PRODUCT_BUILD_PROP_OVERRIDES $file | while read line; do
-    checkif
-    checkendif
-    if echo $line | grep -q PRODUCT_BUILD_PROP_OVERRIDES || echo $line | grep -q \\\\; then
-      echo $line >> $RESULT
+    if checkif || checkendif; then
+      if echo $line | grep -q PRODUCT_BUILD_PROP_OVERRIDES || echo $line | grep -q \\\\; then
+        echo $line >> $RESULT
+      fi
     fi
   done
   while [ -e .inif ]; do
