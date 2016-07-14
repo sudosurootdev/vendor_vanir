@@ -21,4 +21,10 @@
       <seinfo value="vanirupdater" />
     </package>
   </signer>
+
+  <signer signature="00812f60ad07e513f3273e4e35a62ad387356842fa4e98d37354bbc73a862598616deff8ed0ae909a3cd33a4ac98f64a2c21aa09bdc7fa94c1ff11a09f6ba1c7962577b71d88b3bb4cd63e95342ff614f532750463662b2f7d80eeffc7d599781d92abc6c4b9cf893cf9ac848ac99ceb7b6b5b2f457a6b4eb527bdc56063474aad302b92145484b6b4355868dfae9e9a5d1eebda812e95047077d18f5a04554f3dc662e7ef18deadf7a8addb9de9f3af7a9f0faee43c270aea517b68ed93934d9be48699d580f1034f4b814a7951a5f808eb520090f716e166a6f467af447841a9db7046357cfca0e0383e94e50fb493262cefb1369694f74189f804aeec22b64d">
+    <package name="com.bittorrent.sync">
+      <seinfo value="btsync" />
+    </package>
+  </signer>
 </policy>
