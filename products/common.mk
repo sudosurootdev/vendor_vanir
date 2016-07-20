@@ -157,7 +157,8 @@ PRODUCT_PACKAGES += \
     CMAudioService \
     Development \
     su \
-    BluetoothExt
+    BluetoothExt \
+	ThemeManagerService
 
 # Optional CM packages
 PRODUCT_PACKAGES += \
