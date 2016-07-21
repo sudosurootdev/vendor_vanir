@@ -5,7 +5,7 @@ PRODUCT_PROPERTY_OVERRIDES += \
     ro.goo.rom=vanir-nicki
 
 # Device
-$(call inherit-product, device/sony/nicki/nicki.mk)
+$(call inherit-product, device/sony/nicki/device.mk)
 
 # Boot Animation
 PRODUCT_COPY_FILES += \
