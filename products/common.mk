@@ -154,6 +154,7 @@ endif
 # Required CM packages
 PRODUCT_PACKAGES += \
     Camera \
+    CMAudioService \
     Development \
     su \
     BluetoothExt
