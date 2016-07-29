@@ -20,7 +20,6 @@ PRODUCT_PACKAGES_LIST=()
 PACKAGE_LIST=()
 VENDOR_STATE=-1
 COMMON=-1
-FULLY_DEODEXED=-1
 
 TMPDIR="/tmp/extractfiles.$$"
 mkdir "$TMPDIR"
@@ -462,35 +461,12 @@ endif
 EOF
 }
 
-#
-# _adb_connected:
-#
 # Return success if adb is up and not in recovery
-#
 function _adb_connected {
     {
         if [[ "$(adb get-state)" == device &&
               "$(adb shell test -e /sbin/recovery; echo $?)" == 0 ]]
         then
-            return 0
-        fi
-    } 2>/dev/null
-
-    return 1
-};
-
-#
-# _adb_silent_pull:
-#
-# $1: file to be pulled
-# $2: output folder
-#
-# Silently pulls files from adb and
-# return 0 if files can be successfully pulled
-#
-function _adb_silent_pull {
-    {
-        if [[ "$(adb pull $1 $2; echo $?)" == 0 ]]; then
             return 0
         fi
     } 2>/dev/null
@@ -547,84 +523,34 @@ function write_makefiles() {
 #
 # $1: odexed apk|jar to deodex
 # $2: original odexed apk|jar to deodex
-# $3: source of the odexed apk|jar
 #
 # Convert apk|jar .odex in the corresposing classes.dex
 #
 function oat2dex() {
-    if [ "$SRC" = "adb" ]; then
-        local D_FILE="$1"
-        local O_FILE="$2"
-    else
-        local D_FILE="$3/$1"
-        local O_FILE="$3/$2"
-    fi
-    local SRC="$3"
+    local D_FILE="$1"
+    local O_FILE="$2"
+    local ARCH=
     local OAT=
-    local ARCHES=
-    local BOOTOATS=
-    # Pull applicable boot.oats (if file exists) to temp folder
-    if [ ! -f "$TMPDIR/boot.oat" ] && [ ! -f "$TMPDIR/boot64.oat" ]; then
-        if [ "$SRC" = "adb" ]; then
-            _adb_silent_pull "/system/framework/arm64/boot.oat" "$TMPDIR/boot64.oat"
-            _adb_silent_pull "/system/framework/arm/boot.oat" "$TMPDIR/boot.oat"
-        else
-            if [ -f "$SRC/system/framework/arm64/boot.oat" ]; then
-                cp "$SRC/system/framework/arm64/boot.oat" "$TMPDIR/boot64.oat"
-            fi
-            if [ -f "$SRC/system/framework/arm/boot.oat" ]; then
-                cp "$SRC/system/framework/arm/boot.oat" "$TMPDIR/boot.oat"
-            fi
-        fi
-        for x in "$TMPDIR/"boot*.oat; do
-            if [ ! -f $X ]; then
-                # system is fully deodexed, so return
-                FULLY_DEODEXED=1
-                return 0
-            fi
-        done
+
+    if [ -d "$SRC/system/framework/arm64" ]; then
+        ARCH="arm64"
+    else
+        ARCH="arm"
     fi
 
-    [ -f $TMPDIR/boot64.oat ] && ARCHES="arm64"
-    [ -f $TMPDIR/boot.oat ] && ARCHES="${ARCHES} arm"
+    local D_OAT="`dirname $D_FILE`/oat/$ARCH/`basename $D_FILE ."${D_FILE##*.}"`.odex"
+    local O_OAT="`dirname $O_FILE`/oat/$ARCH/`basename $O_FILE ."${O_FILE##*.}"`.odex"
 
-    for ARCHBOOTOAT in "$TMPDIR/"boot*.oat; do
-        BOOTOATS="$BOOTOATS -c $ARCHBOOTOAT"
-    done
-
-    if [ -z "$BAKSMALIJAR" ] || [ -z "$SMALIJAR" ]; then
-        echo "\$BAKSMALIJAR and \$SMALIJAR must be set for oat2dex to work!"
-        exit 1
+    if [ -f "$D_OAT" ]; then
+        OAT="$D_OAT"
+    elif [ -f "$O_OAT" ]; then
+        OAT="$O_OAT"
+    else
+        return 0
     fi
 
-    for ARCH in $ARCHES; do
-        local D_OAT="`dirname $D_FILE`/oat/$ARCH/`basename $D_FILE ."${D_FILE##*.}"`.odex"
-        local O_OAT="`dirname $O_FILE`/oat/$ARCH/`basename $O_FILE ."${O_FILE##*.}"`.odex"
-
-        if [ "$SRC" = "adb" ]; then
-            if [[ "$(_adb_silent_pull "$D_OAT" "$TMPDIR" ; echo $?)" == 0 ]]; then
-                OAT="$TMPDIR/`basename $D_OAT`"
-            elif [[ "$(_adb_silent_pull "$O_OAT" "$TMPDIR" ; echo $?)" == 0 ]]; then
-                OAT="$TMPDIR/`basename $O_OAT`"
-            else
-                echo "NO OATS"
-                # apk|jar is already odexed, so return
-                continue
-            fi
-        else
-            if [ -f "$D_OAT" ]; then
-                OAT="$D_OAT"
-            elif [ -f "$O_OAT" ]; then
-                OAT="$O_OAT"
-            else
-                # apk|jar is already odexed, so return
-                continue
-            fi
-        fi
-
-        java -jar "$BAKSMALIJAR" -x -o "$TMPDIR/dexout" $BOOTOATS -d "$TMPDIR" "$OAT"
-        java -jar "$SMALIJAR" "$TMPDIR/dexout" -o "$TMPDIR/classes.dex"
-    done
+    java -jar "$BAKSMALIJAR" -x -o "$TMPDIR/dexout" -c boot.oat -d "$SRC/system/framework/$ARCH" "$OAT"
+    java -jar "$SMALIJAR" "$TMPDIR/dexout" -o "$TMPDIR/classes.dex"
     rm -rf "$TMPDIR/dexout"
 }
 
@@ -730,15 +656,21 @@ function extract() {
             if [ "$?" != "0" ]; then
                 cp "$SRC/system/$DEST" "$OUTPUT_DIR/$DEST"
             fi
-        fi
-        if [ "$?" == "0" ]; then
-            # Deodex apk|jar if that's the case
-            if [[ "$FULLY_DEODEXED" -ne "1" && "$OUTPUT_DIR/$DEST" =~ .(apk|jar)$ ]]; then
-                oat2dex "/system/$DEST" "/system/$FILE" "$SRC"
-                if [ -f "$TMPDIR/classes.dex" ]; then
-                    zip -gjq "$OUTPUT_DIR/$DEST" "$TMPDIR/classes.dex"
-                    rm "$TMPDIR/classes.dex"
-                    echo "    (updated "$OUTPUT_DIR/$DEST" from odex files)"
+            if [ "$?" == "0" ]; then
+                # Fixup xml files
+                if [[ "$OUTPUT_DIR/$DEST" =~ .xml$ ]]; then
+                    xmlheader=$(grep '^<?xml version' "$OUTPUT_DIR/$DEST")
+                    grep -v '^<?xml version' "$OUTPUT_DIR/$DEST" > "$OUTPUT_DIR/$DEST".temp
+                    (echo "$xmlheader"; cat "$OUTPUT_DIR/$DEST".temp ) > "$OUTPUT_DIR/$DEST"
+                    rm "$OUTPUT_DIR/$DEST".temp
+                fi
+                if [[ "$OUTPUT_DIR/$DEST" =~ .(apk|jar)$ ]]; then
+                    oat2dex "$SRC/system/$DEST" "$SRC/system/$FILE"
+                    if [ -f "$TMPDIR/classes.dex" ]; then
+                        zip -gjq "$OUTPUT_DIR/$DEST" "$TMPDIR/classes.dex"
+                        rm "$TMPDIR/classes.dex"
+                        echo "    (updated "$OUTPUT_DIR/$DEST" from odex files)"
+                    fi
                 fi
             fi
         fi
