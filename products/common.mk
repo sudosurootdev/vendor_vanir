@@ -159,7 +159,8 @@ PRODUCT_PACKAGES += \
     su \
     BluetoothExt \
    ThemeManagerService \
-    HexoLibre
+    HexoLibre \
+    WeatherManagerService
 
 # Optional CM packages
 PRODUCT_PACKAGES += \
