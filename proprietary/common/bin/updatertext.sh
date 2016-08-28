@@ -30,8 +30,8 @@ ED.:K#K:   L##, E#t      .E##E E#t E#t  ;#W:
 t ;##D.    L##, ..         G#E E#t DWi   ,KK:
   ,,,      .,,              fE ,;.
                              ,
-  Vanir - Marshallow 6.0
-    'Jet-Puffed'
+  Vanir - Nougat 7.0
+    'Perfectly Creamy'
     by Team Vanir
  
 EOF
