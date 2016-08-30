@@ -36,9 +36,7 @@ PRODUCT_PACKAGES += \
     CMSettingsProvider \
     ExactCalculator \
     LiveLockScreenService \
-    WeatherProvider \
-    DataUsageProvider \
-    WallpaperPicker
+    WeatherProvider
 
 # Weather
 PRODUCT_PACKAGES += \
@@ -153,12 +151,11 @@ endif
 
 # Required CM packages
 PRODUCT_PACKAGES += \
+    BluetoothExt \
     Camera \
     CMAudioService \
     Development \
     su \
-    BluetoothExt \
-   ThemeManagerService \
     HexoLibre \
     WeatherManagerService
 
@@ -168,15 +165,15 @@ PRODUCT_PACKAGES += \
     ScreenCast \
     libemoji
 
-# Stagefright FFMPEG plugin
-PRODUCT_PACKAGES += \
-    libffmpeg_extractor \
-    libffmpeg_omx \
-    media_codecs_ffmpeg.xml
+## Stagefright FFMPEG plugin
+#PRODUCT_PACKAGES += \
+#    libffmpeg_extractor \
+#    libffmpeg_omx \
+#    media_codecs_ffmpeg.xml
 
-PRODUCT_PROPERTY_OVERRIDES += \
-    media.sf.omx-plugin=libffmpeg_omx.so \
-    media.sf.extractor-plugin=libffmpeg_extractor.so
+#PRODUCT_PROPERTY_OVERRIDES += \
+#    media.sf.omx-plugin=libffmpeg_omx.so \
+#    media.sf.extractor-plugin=libffmpeg_extractor.so
 
 # Copy over added mimetype supported in libcore.net.MimeUtils
 PRODUCT_COPY_FILES += \
@@ -252,10 +249,10 @@ PRODUCT_PACKAGES += \
     openvpn
 
 # Theme engine
-PRODUCT_PACKAGES += \
-    aapt \
-    ThemeChooser \
-    ThemesProvider
+#PRODUCT_PACKAGES += \
+#    aapt \
+#    ThemeChooser \
+#    ThemesProvider
 
 ## STREAMING DMESG?
 PRODUCT_PACKAGES += \
