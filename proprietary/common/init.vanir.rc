@@ -1,4 +1,3 @@
-import /init.superuser.rc
 import /init.vanir.quickboot.rc
 
 on init
