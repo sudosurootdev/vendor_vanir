@@ -728,8 +728,12 @@ function init_adb_connection() {
 #
 function fix_xml() {
     local XML="$1"
-    local TEMP_XML="$TMPDIR/`basename "$XML"`.temp"
+    if [ ! -f "$XML" ]; then
+        echo "!!!! Cannot fix_xml $XML (file missing)" 1>&2
+        return
+    fi
 
+    local TEMP_XML="$TMPDIR/`basename "$XML"`.temp"
     grep '^<?xml version' "$XML" > "$TEMP_XML"
     grep -v '^<?xml version' "$XML" >> "$TEMP_XML"
 
