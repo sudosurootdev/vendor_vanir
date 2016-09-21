@@ -157,10 +157,21 @@ function prefix_match() {
 # items in the list which do not start with a dash (-).
 #
 function write_product_copy_files() {
-    local COUNT=${#PRODUCT_COPY_FILES_LIST[@]}
+    local COUNT_ALL=${#PRODUCT_COPY_FILES_LIST[@]}
     local TARGET=
     local FILE=
     local LINEEND=
+    local existing_copy_files=($(for (( i=1; i<COUNT_ALL+1; i++ )); do
+        FILE="${PRODUCT_COPY_FILES_LIST[$i-1]}"
+        TARGET=$(target_file "${FILE}")
+        if [ -f "${CM_ROOT}"/"${OUTDIR}"/"proprietary"/"${TARGET}" ]; then
+            echo "$FILE"
+        else
+            echo "!!!! Omitting ${TARGET} from PRODUCT_COPY_FILES (file missing)" 1>&2
+        fi
+    done))
+
+    local COUNT=${#existing_copy_files[@]}
 
     if [ "$COUNT" -eq "0" ]; then
         return 0
@@ -168,7 +179,7 @@ function write_product_copy_files() {
 
     printf '%s\n' "PRODUCT_COPY_FILES += \\" >> "$PRODUCTMK"
     for (( i=1; i<COUNT+1; i++ )); do
-        FILE="${PRODUCT_COPY_FILES_LIST[$i-1]}"
+        FILE="${existing_copy_files[$i-1]}"
         LINEEND=" \\"
         if [ "$i" -eq "$COUNT" ]; then
             LINEEND=""
