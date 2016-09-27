@@ -47,8 +47,8 @@ PRODUCT_PACKAGES += \
     QuickBoot \
     init.vanir.quickboot.rc
 
-Vanir_Version=7.0
-Vanir_BUILD=$(Vanir_Version)
+VANIR_VERSION:=7.0
+Vanir_BUILD:=$(VANIR_VERSION)
 
 ifeq ($(RELEASE),)
 ifneq ($(FORCE_BUILD_DATE),)
@@ -56,7 +56,7 @@ BUILD_DATE:=.$(FORCE_BUILD_DATE)
 else
 BUILD_DATE:=$(shell date +".%m%d%y")
 endif
-Vanir_BUILD=$(Vanir_Version)$(BUILD_DATE)
+Vanir_BUILD:=$(VANIR_VERSION)$(BUILD_DATE)
 endif
 
 -include $(WORKSPACE)/build_env/image-auto-bits.mk
