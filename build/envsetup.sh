@@ -1,4 +1,4 @@
-function __print_cm_functions_help() {
+function __print_vanir_functions_help() {
 cat <<EOF
 Additional CyanogenMod functions:
 - cout:            Changes directory to out.
@@ -21,6 +21,11 @@ Additional CyanogenMod functions:
 - repopick:        Utility to fetch changes from Gerrit.
 - installboot:     Installs a boot.img to the connected device.
 - installrecovery: Installs a recovery.img to the connected device.
+Additional Vanir functions:
+- forall_vanir:    A wrapper around 'repo forall ... -c' that only runs on vanir-tracked repos. export FORALL_ARGS=-j# to run # jobs in parallel.
+                   ex: FORALL_ARGS=-j4 forall_vanir 'sleep 5; pwd'
+- forall_cm:       forall_vanir for cm-tracked repos
+- segrep:          grep recursively through selinux policy files
 EOF
 }
 
@@ -43,7 +48,7 @@ function breakfast()
     CM_DEVICES_ONLY="true"
     unset LUNCH_MENU_CHOICES
     add_lunch_combo full-eng
-    for f in `/bin/ls vendor/cm/vendorsetup.sh 2> /dev/null`
+    for f in `/bin/ls vendor/vanir/vendorsetup.sh 2> /dev/null`
         do
             echo "including $f"
             . $f
@@ -63,7 +68,7 @@ function breakfast()
             if [ -z "$variant" ]; then
                 variant="userdebug"
             fi
-            lunch cm_$target-$variant
+            lunch vanir_$target-$variant
         fi
     fi
     return $?
@@ -74,8 +79,9 @@ alias bib=breakfast
 function eat()
 {
     if [ "$OUT" ] ; then
-        MODVERSION=$(get_build_var CM_VERSION)
-        ZIPFILE=cm-$MODVERSION.zip
+        MODVERSION=$(get_build_var VANIR_VERSION)
+        PRODUCT=$(get_build_var VANIR_BUILD)
+        ZIPFILE=vanir_${PRODUCT}_${MODVERSION}.zip
         ZIPPATH=$OUT/$ZIPFILE
         if [ ! -f $ZIPPATH ] ; then
             echo "Nothing to eat"
@@ -90,7 +96,7 @@ function eat()
             done
             echo "Device Found.."
         fi
-    if (adb shell getprop ro.cm.device | grep -q "$CM_BUILD");
+    if ([ $CM_BUILD ] && adb shell getprop ro.cm.device | grep -q "$CM_BUILD") || ([ $VANIR_BUILD ] && adb      shell getprop ro.vanir.device | grep -q "$VANIR_BUILD");
     then
         # if adbd isn't root we can't write to /cache/recovery/
         adb root
@@ -112,7 +118,7 @@ EOF
     fi
     return $?
     else
-        echo "The connected device does not appear to be $CM_BUILD, run away!"
+        echo "The connected device does not appear to be $VANIR_BUILD$CM_BUILD, run away!"
     fi
 }
 
@@ -230,7 +236,7 @@ function dddclient()
        echo "Unable to determine build system output dir."
    fi
 }
-
+if ! declare -f cmremote >/dev/null 2>&1; then
 function cmremote()
 {
     if ! git rev-parse --git-dir &> /dev/null
@@ -249,7 +255,8 @@ function cmremote()
     fi
     echo "Remote 'cmremote' created"
 }
-
+fi
+if ! declare -f aospremote >/dev/null 2>&1; then
 function aospremote()
 {
     if ! git rev-parse --git-dir &> /dev/null
@@ -266,7 +273,8 @@ function aospremote()
     git remote add aosp https://android.googlesource.com/$PFX$PROJECT
     echo "Remote 'aosp' created"
 }
-
+fi
+if ! declare -f cafremote >/dev/null 2>&1; then
 function cafremote()
 {
     if ! git rev-parse --git-dir &> /dev/null
@@ -283,7 +291,7 @@ function cafremote()
     git remote add caf git://codeaurora.org/$PFX$PROJECT
     echo "Remote 'caf' created"
 }
-
+fi
 function installboot()
 {
     if [ ! -e "$OUT/recovery/root/etc/recovery.fstab" ];
@@ -314,7 +322,7 @@ function installboot()
     sleep 1
     adb wait-for-online shell mount /system 2>&1 > /dev/null
     adb wait-for-online remount
-    if (adb shell getprop ro.cm.device | grep -q "$CM_BUILD");
+    if ([ $CM_BUILD ] && adb shell getprop ro.cm.device | grep -q "$CM_BUILD") || ([ $VANIR_BUILD ] && adb      shell getprop ro.vanir.device | grep -q "$VANIR_BUILD");
     then
         adb push $OUT/boot.img /cache/
         for i in $OUT/system/lib/modules/*;
@@ -325,7 +333,7 @@ function installboot()
         adb shell chmod 644 /system/lib/modules/*
         echo "Installation complete."
     else
-        echo "The connected device does not appear to be $CM_BUILD, run away!"
+        echo "The connected device does not appear to be $VANIR_BUILD$CM_BUILD, run away!"
     fi
 }
 
@@ -359,13 +367,13 @@ function installrecovery()
     sleep 1
     adb wait-for-online shell mount /system 2>&1 >> /dev/null
     adb wait-for-online remount
-    if (adb shell getprop ro.cm.device | grep -q "$CM_BUILD");
+    if ([ $CM_BUILD ] && adb shell getprop ro.cm.device | grep -q "$CM_BUILD") || ([ $VANIR_BUILD ] && adb      shell getprop ro.vanir.device | grep -q "$VANIR_BUILD");
     then
         adb push $OUT/recovery.img /cache/
         adb shell dd if=/cache/recovery.img of=$PARTITION
         echo "Installation complete."
     else
-        echo "The connected device does not appear to be $CM_BUILD, run away!"
+        echo "The connected device does not appear to be $VANIR_BUILD$CM_BUILD, run away!"
     fi
 }
 
@@ -672,19 +680,68 @@ function cmrebase() {
 
 function mka() {
     local T=$(gettop)
-    if [ "$T" ]; then
-        case `uname -s` in
-            Darwin)
-                make -C $T -j `sysctl hw.ncpu|cut -d" " -f2` "$@"
-                ;;
-            *)
-                mk_timer schedtool -B -n 1 -e ionice -n 1 make -C $T -j$(cat /proc/cpuinfo | grep "^processor" | wc -l) "$@"
-                ;;
-        esac
-
-    else
-        echo "Couldn't locate the top of the tree.  Try setting TOP."
+    local CWD=$(pwd)
+    croot
+    if [ ! "$T" ]; then
+        echo "Couldn't locate the top of the tree.  CD into it or try setting TOP." >&2
+        return
     fi
+    export TARGET_SIMULATOR=false
+    export BUILD_TINY_ANDROID=
+    local MAKECMD=""
+    case `uname -s` in
+        Darwin)
+            if [ ! $(echo $VANIR_PARALLEL_JOBS | wc -w) -gt 0 ]; then
+                local threads=`sysctl hw.ncpu|cut -d" " -f2`
+                local load=`expr $threads \* 2`
+                VANIR_PARALLEL_JOBS="-j$load"
+            fi
+            MAKECMD="`command -pv make` $VANIR_PARALLEL_JOBS"
+            ;;
+        *)
+            if [ ! $(echo $VANIR_PARALLEL_JOBS | wc -w) -gt 0 ]; then
+                local cores=`nproc --all`
+                VANIR_PARALLEL_JOBS="-j$cores"
+            fi
+            MAKECMD="schedtool -B -n 1 -e ionice -n 1 `command -pv make` $VANIR_PARALLEL_JOBS"
+            ;;
+    esac
+    export start_time=$(date +"%s")
+    echo $start_time > ${ANDROID_BUILD_TOP}/.lastbuildstart
+    mk_timer $MAKECMD "$@"
+    retval=$?
+    if [ $retval -eq 0 ] ; then
+        [ ! $VANIR_DISABLE_BUILD_COMPLETION_NOTIFICATIONS ] && notify-send "VANIR" "$TARGET_PRODUCT build completed." -i $T/vendor/vanir/build/buildwin.png -t 10000
+    else
+        [ ! $VANIR_DISABLE_BUILD_COMPLETION_NOTIFICATIONS ] && notify-send "VANIR" "$TARGET_PRODUCT build FAILED." -i $T/build/buildfailed.png -t 10000
+    fi
+    cd "$CWD"
+    return $retval
+}
+
+smash() {
+    #to do: add smash $anytarget, smashOTA, smash, smashVANIR
+    DIR=$OUT
+    #to do: fix the colors
+    if [ -d  "$DIR" ]; then
+       echo ""
+       echo $CL_RED" Removing" $CL_RST" $TARGET_PRODUCT out directory:"
+       echo " Location:"
+       echo " $OUT"
+       rm -R -f $OUT
+       echo "  ."
+       echo "  ."
+       echo "  ."
+       echo "  ."
+       echo "  ."
+       echo $CL_RST" Destroyed."
+       echo ""
+       return;
+       else 
+       echo ""
+       echo $CL_YLW" Already" $CL_RED" SMASHED it !!!" $CL
+       echo ""
+   fi
 }
 
 function cmka() {
@@ -786,7 +843,7 @@ function dopush()
         echo "Device Found."
     fi
 
-    if (adb shell getprop ro.cm.device | grep -q "$CM_BUILD") || [ "$FORCE_PUSH" = "true" ];
+    if ([ $CM_BUILD ] && adb shell getprop ro.cm.device | grep -q "$CM_BUILD") || ([ $VANIR_BUILD ] && adb      shell getprop ro.vanir.device | grep -q "$VANIR_BUILD");
     then
     # retrieve IP and PORT info if we're using a TCP connection
     TCPIPPORT=$(adb devices | egrep '^[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+:[0-9]+[^0-9]+' \
@@ -929,3 +986,80 @@ function fixup_common_out_dir() {
         mkdir -p ${common_out_dir}
     fi
 }
+
+# Run a command inside all projects tracked on the vanir remote in the manifest
+function forall_vanir()
+{
+  cd $ANDROID_BUILD_TOP
+  regex=$(repo forall -c '[ "$REPO_REMOTE" = "vanir" ] &&  echo -n \|^$REPO_PATH\$' | sed 's/^|//g')
+  repo forall -r $regex $FORALL_ARGS -c "$@"
+}
+function forall_cm()
+{
+  cd $ANDROID_BUILD_TOP
+  regex=$(repo forall -c '[ "$REPO_REMOTE" = "cm" ] &&     echo -n \|^$REPO_PATH\$' | sed 's/^|//g')
+  repo forall -r $regex $FORALL_ARGS -c "$@"
+}
+
+# sepolicy grep by Nuclearmistake
+case `uname -s` in
+    Darwin)
+        function segrep()
+        {
+            find -E . -name .repo -prune -o -name .git -prune -o -path ./out -prune -o -regextype posix-egrep -iregex '(.*\/[A-Za-z][A-Za-z]*_contexts|.*\.te)' -type f -print0 | xargs -0 grep --color -n "$@"
+        }
+        ;;
+    *)
+        function segrep()
+        {
+            find . -name .repo -prune -o -name .git -prune -o -path ./out -prune -o -regextype posix-egrep -iregex '(.*\/[A-Za-z][A-Za-z]*_contexts|.*\.te)' -type f -print0 | xargs -0 grep --color -n "$@"
+        }
+        ;;
+esac
+
+
+# compile master branch ccache
+$ANDROID_BUILD_TOP/vendor/vanir/build/tools/ccache_version_check.sh
+
+# repo versioning hack
+if [ $STFU_REPO ]; then
+    pushd . >& /dev/null
+    cd $(gettop)/.repo/repo
+    [ `git remote -v | grep github | wc -l` -eq 0 ] && git remote add github https://github.com/nuclearmistake/repo
+    git fetch github >& /dev/null
+    git checkout github/master >& /dev/null
+    popd >& /dev/null
+fi
+
+# rst (repo start helper), rup (repo upload helper)
+source $(gettop)/vendor/vanir/build/nukehawtness
+
+# GIT PS1 shenans
+parse_git_dirty() {
+ [ $(git status --porcelain 2> /dev/null | wc -l) -ne 0 ] && echo " \*"
+}
+parse_git_branch() {
+ [ "$(parse_git_dirty)" = "" ] && echo -en "\033[1;32m" || echo -en "\033[1;31m"
+ git branch --no-color 2> /dev/null | sed -e '/^[^*]/d' -e "s/* \(.*\)/ (\1$(parse_git_dirty))/"
+}
+if [ ! $GITPS1ENGAGED ]; then
+export GITPS1ENGAGED=1
+export PS1=`echo "$PS1" | sed 's/\[\$ \]*//g'`
+export NONE='\[\033[0m\]'
+istheregit=$(which git)
+if [ `echo $PS1 | grep parse_git_branch | wc -l` -eq 0 ]; then
+  if [ -x "$istheregit" ]; then
+      export PS1="${NONE}$PS1\$(parse_git_branch)${NONE}"
+  else
+      export PS1="$PS1$ "
+  fi
+  export PS1=`echo "$PS1" | sed 's/$[ ]*$//g'`"\n${NONE}\$ "
+fi
+fi
+
+# tab completion
+if [ `typeset -F | grep _git | wc -l` -eq 0 ]; then
+  source $(gettop)/vendor/vanir/build/git-completion.bash
+fi
+
+export PATH=$ANDROID_BUILD_TOP/ccache:$PATH:$ANDROID_BUILD_TOP/vendor/vanir/build/tools:$ANDROID_BUILD_TOP/vendor/vanir/scripts
