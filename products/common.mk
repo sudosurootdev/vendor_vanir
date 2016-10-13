@@ -36,7 +36,8 @@ PRODUCT_PACKAGES += \
     CMSettingsProvider \
     ExactCalculator \
     LiveLockScreenService \
-    WeatherProvider
+    WeatherProvider \
+    WallpaperPicker
 
 # Weather
 PRODUCT_PACKAGES += \
