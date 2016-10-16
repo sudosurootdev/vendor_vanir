@@ -4,20 +4,20 @@
 champagne()
 {
     source build/envsetup.sh >& /dev/null
-    local TARGET_KERNEL_SOURCE=`get_build_var TARGET_KERNEL_SOURCE`
-    local TARGET_NO_KERNEL=`get_build_var TARGET_NO_KERNEL`
-    local TARGET_KERNEL_VERSION=`get_build_var TARGET_KERNEL_VERSION`
+    local TARGET_KERNEL_SOURCE=$(get_build_var TARGET_KERNEL_SOURCE)
+    local TARGET_NO_KERNEL=$(get_build_var TARGET_NO_KERNEL)
+    local TARGET_KERNEL_VERSION=$(get_build_var TARGET_KERNEL_VERSION)
 
-    device=`get_build_var TARGET_DEVICE`
+    device=$(get_build_var TARGET_DEVICE)
 
-    devicedir="`find device -name "$device" -type d | head -n 1`"
-    if [ ! $devicedir ] || [ `echo $devicedir | wc -c` -le 1 ]; then
-        devicedir="`find device -name '*'"$device" -type d | head -n 1`"
+    devicedir="$(find device -name "$device" -type d | head -n 1)"
+    if [ ! $devicedir ] || [ $(echo $devicedir | wc -c) -le 1 ]; then
+        devicedir="$(find device -name '*'"$device" -type d | head -n 1)"
     fi
-    if [ ! $devicedir ] || [ `echo $devicedir | wc -c` -le 1 ]; then
-        devicedir="`find device -name "$device"'*' -type d | head -n 1`"
+    if [ ! $devicedir ] || [ $(echo $devicedir | wc -c) -le 1 ]; then
+        devicedir="$(find device -name "$device"'*' -type d | head -n 1)"
     fi
-    if [ ! $devicedir ] || [ `echo $devicedir | wc -c` -le 1 ]; then
+    if [ ! $devicedir ] || [ $(echo $devicedir | wc -c) -le 1 ]; then
         echo "$device IS A SACK OF CRAP AND SO ARE YOU."
         return 1
     fi
@@ -27,10 +27,10 @@ champagne()
     fi
 
     if [ ! $TARGET_KERNEL_SOURCE ]; then
-        TARGET_KERNEL_SOURCE=`echo $devicedir | sed -e 's/^device/kernel/g'`
+        TARGET_KERNEL_SOURCE=$(echo $devicedir | sed -e 's/^device/kernel/g')
     fi
 
-    kernelsource="android_`echo $TARGET_KERNEL_SOURCE | sed 's/\//_/g'`"
+    kernelsource="android_$(echo $TARGET_KERNEL_SOURCE | sed 's/\//_/g')"
 
     source manifest/kernel_special_cases.sh $device
     [ ! $remote ] && remote=$defaultremote
@@ -43,10 +43,10 @@ champagne()
     </manifest>' > .repo/local_manifests/bottleservice.xml
     fi
     needschecking=
-    if [ `cat .repo/local_manifests/bottleservice.xml | egrep "path=\"$TARGET_KERNEL_SOURCE\"" | wc -l` -gt 1 ]; then
+    if [ $(cat .repo/local_manifests/bottleservice.xml | egrep "path=\"$TARGET_KERNEL_SOURCE\"" | wc -l) -gt 1 ]; then
        echo " UH OH! You have duplicate repos for $TARGET_KERNEL_SOURCE in bottleservice.xml" 1>&2
        echo " Let's pick one arbitrarily and get rid of the rest." 1>&2
-       line=`cat .repo/local_manifests/bottleservice.xml | egrep "path=\"$TARGET_KERNEL_SOURCE\"" | tail -n 1`
+       line=$(cat .repo/local_manifests/bottleservice.xml | egrep "path=\"$TARGET_KERNEL_SOURCE\"" | tail -n 1)
        cat .repo/local_manifests/bottleservice.xml | grep -v "</manifest>" | egrep -v "path=\"$TARGET_KERNEL_SOURCE\"" > .repo/local_manifests/tmp.xml
        echo "$line" >> .repo/local_manifests/tmp.xml
        echo "</manifest>" >> .repo/local_manifests/tmp.xml
@@ -56,29 +56,29 @@ champagne()
     getkernelline='path="'$TARGET_KERNEL_SOURCE'" name="'$kernelsource'"'
     [ $remote ] && getkernelline=$getkernelline' remote="'$remote'"'
     [ $remoterevision ] && getkernelline=$getkernelline' revision="'$remoterevision'"'
-    haskernelline=`cat .repo/local_manifests/bottleservice.xml | egrep "$getkernelline" | wc -l`
-    hasdevice=`cat .repo/local_manifests/bottleservice.xml | egrep "<!-- $device -->" | wc -l`
+    haskernelline=$(cat .repo/local_manifests/bottleservice.xml | egrep "$getkernelline" | wc -l)
+    hasdevice=$(cat .repo/local_manifests/bottleservice.xml | egrep "<!-- $device -->" | wc -l)
     invalidateddevices=
     if [ $precompiled ] && [ $hasdevice -gt 0 ] || [ $hasdevice -gt 0 ] && [ $haskernelline -eq 0 ]; then
        #device comment is in the file, but its kernel is the wrong one
-       line=`cat .repo/local_manifests/bottleservice.xml | egrep "<!-- $device -->"`
+       line=$(cat .repo/local_manifests/bottleservice.xml | egrep "<!-- $device -->")
        cat .repo/local_manifests/bottleservice.xml | grep -v "</manifest>" | egrep -v "$line" > .repo/local_manifests/tmp.xml
        remainingdevs=""
        echo " removing $device from previous kernel line: $line" 1>&2
-       for x in `echo $line | sed 's/.*\/> //g' | sed 's/<!-- //g' | sed 's/ -->/ /g'`; do
+       for x in $(echo $line | sed 's/.*\/> //g' | sed 's/<!-- //g' | sed 's/ -->/ /g'); do
            if [ ! "$device" = $x ]; then
                remainingdevs="$remainingdevs $x"
            fi
        done
-       if [ `echo $remainingdevs | wc -c` -gt 1 ]; then
+       if [ $(echo $remainingdevs | wc -c) -gt 1 ]; then
            invalidateddevices="$remainingdevs"
            needschecking=1
            comments=""
            for x in $remainingdevs; do
               comments="$comments<!-- $x -->"
            done
-           echo " remaining line that used to have device = `echo "$line" | sed 's/<!--.*//g'`$comments" 1>&2
-           echo "`echo "$line" | sed 's/<!--.*//g'`$comments" >> .repo/local_manifests/tmp.xml
+           echo " remaining line that used to have device = $(echo "$line" | sed 's/<!--.*//g')$comments" 1>&2
+           echo "$(echo "$line" | sed 's/<!--.*//g')$comments" >> .repo/local_manifests/tmp.xml
        else
            echo " deleting line used by no devices" 1>&2
        fi
@@ -86,7 +86,7 @@ champagne()
        mv .repo/local_manifests/tmp.xml .repo/local_manifests/bottleservice.xml
     elif [ $haskernelline -gt 0 ] && [ $hasdevice -eq 0 ]; then
         #device's kernel is in the file, but device comment isn't added yet
-        line=`cat .repo/local_manifests/bottleservice.xml | egrep "$getkernelline"`
+        line=$(cat .repo/local_manifests/bottleservice.xml | egrep "$getkernelline")
         echo "Adding $device to already existing kernel line: $line" 1>&2
         cat .repo/local_manifests/bottleservice.xml | egrep -v "$line" | grep -v "</manifest>" > .repo/local_manifests/tmp.xml
         echo "$line <!-- $device -->" >> .repo/local_manifests/tmp.xml
