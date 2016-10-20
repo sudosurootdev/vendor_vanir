@@ -846,7 +846,8 @@ function dopush()
     if ([ $CM_BUILD ] && adb shell getprop ro.cm.device | grep -q "$CM_BUILD") || ([ $VANIR_BUILD ] && adb      shell getprop ro.vanir.device | grep -q "$VANIR_BUILD");
     then
     # retrieve IP and PORT info if we're using a TCP connection
-    TCPIPPORT=$(adb devices | egrep '^[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+:[0-9]+[^0-9]+' \
+    TCPIPPORT=$(adb devices \
+        | egrep '^(([a-zA-Z0-9]|[a-zA-Z0-9][a-zA-Z0-9\-]*[a-zA-Z0-9])\.)*([A-Za-z0-9]|[A-Za-z0-9][A-Za-z0-9\-]*[A-Za-z0-9]):[0-9]+[^0-9]+' \
         | head -1 | awk '{print $1}')
     adb root &> /dev/null
     sleep 0.3
