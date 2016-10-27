@@ -703,7 +703,7 @@ function mka() {
                 local cores=`nproc --all`
                 VANIR_PARALLEL_JOBS="-j$cores"
             fi
-            MAKECMD="schedtool -B -n 1 -e ionice -n 1 `command -pv make` $VANIR_PARALLEL_JOBS"
+            MAKECMD="schedtool -B -n 10 -e ionice -n 7 `command -pv make` $VANIR_PARALLEL_JOBS"
             ;;
     esac
     export start_time=$(date +"%s")
