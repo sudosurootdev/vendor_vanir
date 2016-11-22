@@ -36,8 +36,10 @@ PRODUCT_PACKAGES += \
     VanirUpdater \
     Profiles \
     CMSettingsProvider \
+    Launcher3
     ExactCalculator \
     LiveLockScreenService \
+    Screencast \
     WeatherProvider \
     WallpaperPicker
 
@@ -156,6 +158,7 @@ PRODUCT_PACKAGES += \
     BluetoothExt \
     Camera \
     CMAudioService \
+    CMParts \
     Development \
     su \
     HexoLibre \
