@@ -249,16 +249,12 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     rsync
 
-# openvpwn
-PRODUCT_PACKAGES += \
-    openvpn
-
 # Telephony
 PRODUCT_PACKAGES += \
     telephony-ext
 
 PRODUCT_BOOT_JARS += \
-telephony-ext
+    telephony-ext
 
 # Theme engine
 #PRODUCT_PACKAGES += \
