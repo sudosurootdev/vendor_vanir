@@ -250,6 +250,13 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     openvpn
 
+# Telephony
+PRODUCT_PACKAGES += \
+    telephony-ext
+
+PRODUCT_BOOT_JARS += \
+telephony-ext
+
 # Theme engine
 #PRODUCT_PACKAGES += \
 #    aapt \
