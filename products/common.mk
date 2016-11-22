@@ -36,7 +36,7 @@ PRODUCT_PACKAGES += \
     VanirUpdater \
     Profiles \
     CMSettingsProvider \
-    Launcher3
+    Launcher3 \
     ExactCalculator \
     LiveLockScreenService \
     Screencast \
