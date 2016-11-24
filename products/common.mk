@@ -249,6 +249,10 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     rsync
 
+# Storage manager
+PRODUCT_PROPERTY_OVERRIDES += \
+    ro.storage_manager.enabled=true
+
 # Telephony
 PRODUCT_PACKAGES += \
     telephony-ext
