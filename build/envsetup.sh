@@ -1082,3 +1082,8 @@ if [ $(typeset -F | grep _git | wc -l) -eq 0 ]; then
 fi
 
 export PATH=$ANDROID_BUILD_TOP/ccache:$PATH:$ANDROID_BUILD_TOP/vendor/vanir/build/tools:$ANDROID_BUILD_TOP/vendor/vanir/scripts
+
+# Android specific JACK args
+if [ -n "$JACK_SERVER_VM_ARGUMENTS" ] && [ -z "$ANDROID_JACK_VM_ARGS" ]; then
+    export ANDROID_JACK_VM_ARGS=$JACK_SERVER_VM_ARGUMENTS
+fi
