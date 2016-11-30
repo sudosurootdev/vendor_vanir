@@ -13,11 +13,7 @@ PRODUCT_PACKAGES += \
     LatinIME \
     SpeakerProximity \
     CellBroadcastReceiver \
-    messaging \
-    telephony-ext
-
-PRODUCT_BOOT_JARS += \
-    telephony-ext
+    messaging
 
 # Audio Packages
 include frameworks/base/data/sounds/AudioPackage7.mk
