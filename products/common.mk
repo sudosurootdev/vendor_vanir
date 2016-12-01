@@ -280,5 +280,8 @@ ifeq ($(OTA_PACKAGE_SIGNING_KEY),)
         vendor/vanir/build/target/product/security/cm-devkey
 endif
 
+PRODUCT_PACKAGES += \
+	bootanimation.zip
+
 $(call inherit-product-if-exists, vendor/vanir-private/Private.mk)
 $(call inherit-product-if-exists, vendor/extra/product.mk)
