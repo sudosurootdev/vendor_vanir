@@ -16,8 +16,9 @@ $(call inherit-product, vendor/vanir/proprietary/ringtones/VanirRingtones.mk)
 PRODUCT_COPY_FILES += \
     vendor/vanir/config/permissions/backup.xml:system/etc/sysconfig/backup.xml
 
-# Include librsjni explicitly to workaround GMS issue
+# Include explicitly to workaround GMS issue
 PRODUCT_PACKAGES += \
+	libprotobuf-cpp-full \
     librsjni
 
 # Build packages included in manifest
