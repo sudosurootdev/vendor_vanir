@@ -1,4 +1,5 @@
 # Copyright (C) 2015 The CyanogenMod Project
+#           (C) 2017 The LineageOS Project
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -49,3 +50,8 @@ endif
 ifneq ($(BOOT_ANIMATION_LINE),)
 PRODUCT_COPY_FILES := $(filter-out $(BOOT_ANIMATION_LINE),$(PRODUCT_COPY_FILES))
 endif
+
+BUILD_MAVEN_PREBUILT := $(TOP)/vendor/vanir/build/core/maven_artifact.mk
+PUBLISH_MAVEN_PREBUILT := $(TOP)/vendor/vanir/build/core/maven_artifact_publish.mk
+
+BUILD_HTTP_PREBUILT := $(TOP)/vendor/vanir/build/core/http_prebuilt.mk
