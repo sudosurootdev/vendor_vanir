@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/bash -e
 
 WIDTH="$1"
 HEIGHT="$2"
@@ -19,12 +19,14 @@ fi
 
 RESOLUTION=""$IMAGESIZE"x"$IMAGESIZE""
 
-mkdir -p $ANDROID_PRODUCT_OUT/obj/BOOTANIMATION/bootanimation/part{0..2}
-tar xfp "vendor/cm/bootanimation/bootanimation.tar" --to-command="convert - -resize '$RESOLUTION' \"png8:$OUT/bootanimation/\$TAR_FILENAME\""
+for x in `tar tfj vendor/vanir/bootanimation/bootanimation.zip --exclude '*/*'`; do
+    mkdir -p $OUT/bootanimation/$x
+done
+tar xfp "vendor/vanir/bootanimation/bootanimation.tar" --to-command "convert - -resize '$RESOLUTION' \"png8:$OUT/bootanimation/\$TAR_FILENAME\""
 
 # Create desc.txt
-echo "$SIZE" "$SIZE" 30 > "$OUT/bootanimation/desc.txt"
-cat "vendor/cm/bootanimation/desc.txt" >> "$OUT/bootanimation/desc.txt"
+echo "$WIDTH" "$HEIGHT" 30 > "$OUT/bootanimation/desc.txt"
+cat "vendor/vanir/bootanimation/desc.txt" >> "$OUT/bootanimation/desc.txt"
 
 # Create bootanimation.zip
 cd "$OUT/bootanimation"
