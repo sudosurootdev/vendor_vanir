@@ -41,7 +41,7 @@ TARGET_SCREEN_HEIGHT := $(shell echo $(BOOT_ANIMATION_RESOLUTION) | sed 's/.*x//
 PRODUCT_COPY_FILES := $(filter-out $(BOOT_ANIMATION_LINE),$(PRODUCT_COPY_FILES))
 else
 ifneq ($(VANIR_BUILD),)
-$(error Could not determine boot animation size based on PRODUCT_COPY_FILES. Set TARGET_SCREEN_WIDTH and TARGET_SCREEN_HEIGHT in vendor/vanir/products/$(TARGET_PRODUCT).mk)
+$(error Could not determine boot animation size based on PRODUCT_COPY_FILES. Set TARGET_SCREEN_WIDTH and TARGET_SCREEN_HEIGHT in vendor/$(BOOT_ANIMATION_VENDOR)/products/$(TARGET_PRODUCT).mk)
 else
 $(warning Could not determine boot animation size, but you're not building a vanir_* target, so GLHF, butthead)
 endif
