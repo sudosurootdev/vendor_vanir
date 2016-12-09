@@ -13,9 +13,9 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
-
+BOOT_ANIMATION_VENDOR ?= vanir
 define build-bootanimation
-    sh vendor/vanir/bootanimation/generate-bootanimation.sh \
+    sh vendor/$(BOOT_ANIMATION_VENDOR)/bootanimation/generate-bootanimation.sh \
     $(TARGET_SCREEN_WIDTH) \
     $(TARGET_SCREEN_HEIGHT) \
     $(TARGET_BOOTANIMATION_HALF_RES)
