@@ -29,7 +29,7 @@ fi
 tar xfp "$HERE/bootanimation.tar" --to-command "convert - -resize '$RESOLUTION' \"png8:$OUT/bootanimation/\$TAR_FILENAME\""
 
 # Create desc.txt
-echo "$WIDTH" "$HEIGHT" 30 > "$OUT/bootanimation/desc.txt"
+echo "$WIDTH" "$HEIGHT" 90 > "$OUT/bootanimation/desc.txt"
 cat "$HERE/desc.txt" >> "$OUT/bootanimation/desc.txt" # Create bootanimation.zip
 cd "$OUT/bootanimation"
 
