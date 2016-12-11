@@ -8,7 +8,7 @@ PRODUCT_PROPERTY_OVERRIDES += \
 $(call inherit-product, $(SRC_TARGET_DIR)/product/full_base_telephony.mk)
 
 # Inherit vanir phone stuff
-$(call inherit-product, vendor/commotio/products/common_phones.mk)
+$(call inherit-product, vendor/vanir/products/common_phones.mk)
 
 # Boot Animation
 TARGET_SCREEN_WIDTH := 1080
