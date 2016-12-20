@@ -5,6 +5,9 @@ $(call inherit-product, vendor/vanir/products/common.mk)
 PRODUCT_COPY_FILES += \
     vendor/vanir/proprietary/common/etc/apns-conf.xml:system/etc/apns-conf.xml
 
+PRODUCT_COPY_FILES += \
+    vendor/vanir/config/permissions/qcom_ims.xml:system/etc/default-permissions/qcom_ims.xml
+
 # SIM Toolkit
 PRODUCT_PACKAGES += \
     Stk
