@@ -22,3 +22,7 @@ PRODUCT_PACKAGES += \
 include frameworks/base/data/sounds/AudioPackage7.mk
 
 PRODUCT_PACKAGE_OVERLAYS += vendor/vanir/overlay/dictionaries
+
+# IMS Default Permission
+PRODUCT_COPY_FILES += \
+    vendor/vanir/config/permissions/qcom_ims.xml:system/etc/default-permissions/qcom_ims.xm
