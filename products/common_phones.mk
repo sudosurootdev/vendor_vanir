@@ -15,7 +15,6 @@ PRODUCT_PACKAGES += \
 
 PRODUCT_PACKAGES += \
     LatinIME \
-    SpeakerProximity \
     CellBroadcastReceiver \
     messaging
 
