@@ -2,16 +2,20 @@
 DHO_VENDOR := vanir
 
 # Run these first or they will not stick
-PRODUCT_PROPERTY_OVERRIDES += ro.goo.rom=vanir-FLO
+PRODUCT_PROPERTY_OVERRIDES += ro.goo.rom=vanir-flo
 
 # Tablet Overlays no radios
 PRODUCT_PACKAGE_OVERLAYS += vendor/vanir/overlay/tab_no_radio
 
 # Boot Animation
-PRODUCT_COPY_FILES += vendor/vanir/proprietary/boot_animations/1280x1920.zip:system/media/bootanimation.zip
+TARGET_SCREEN_HEIGHT := 1920
+TARGET_SCREEN_WIDTH := 1200
 
-# Inherit AOSP device configuration for grouper
-$(call inherit-product, device/asus/flo/full_flo.mk)
+# Inherit from the common Open Source product configuration
+$(call inherit-product, $(SRC_TARGET_DIR)/product/aosp_base.mk)
+
+# Inherit from hardware-specific part of the product configuration
+$(call inherit-product, device/asus/flo/device.mk)
 
 # Inherit common product files.
 NEXUS_CATEGORY := tabs

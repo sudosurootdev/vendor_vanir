@@ -1,25 +1,27 @@
 #Squisher Choosing
 DHO_VENDOR := vanir
 
-KERNEL_SPAM := CM-AOSP 3.4.0-g8e41961
-
 # Run these first or they will not stick
-PRODUCT_PROPERTY_OVERRIDES += ro.goo.rom=vanir-DEB
+PRODUCT_PROPERTY_OVERRIDES += ro.goo.rom=vanir-deb
 
 # Tablet Overlays with radios
 PRODUCT_PACKAGE_OVERLAYS += vendor/vanir/overlay/tab_radio
 
-# GSM APNs and Simcard app
-
 # Boot Animation
-PRODUCT_COPY_FILES += vendor/vanir/proprietary/boot_animations/1080x1920.zip:system/media/bootanimation.zip
+TARGET_SCREEN_HEIGHT := 1920
+TARGET_SCREEN_WIDTH := 1200
+TARGET_BOOTANIMATION_HALF_RES := true
 
-$(call inherit-product, device/asus/deb/full_deb.mk)
+# Inherit from the common Open Source product configuration
+$(call inherit-product, $(SRC_TARGET_DIR)/product/aosp_base.mk)
+
+# Inherit device configuration
+$(call inherit-product, device/asus/deb/device.mk)
+$(call inherit-product-if-exists, vendor/asus/deb/device-vendor.mk)
 
 # Inherit common product files.
 NEXUS_CATEGORY := tabs
 $(call inherit-product, vendor/vanir/products/common_nexus.mk)
-
 
 # Setup device specific product configuration.
 PRODUCT_NAME := vanir_deb
