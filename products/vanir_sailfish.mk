@@ -1,7 +1,7 @@
 #Squisher Choosing
 DHO_VENDOR := vanir
 
-PRODUCT_PROPERTY_OVERRIDES += ro.goo.rom=vanir-marlin
+PRODUCT_PROPERTY_OVERRIDES += ro.goo.rom=vanir-sailfish
 
 # Boot Animation ***May need update***
 TARGET_SCREEN_WIDTH := 1440
@@ -13,7 +13,7 @@ $(call inherit-product, device/google/marlin/aosp_sailfish.mk)
 # Inherit from our custom product configuration
 $(call inherit-product, vendor/vanir/products/common_phones.mk)
 
-PRODUCT_NAME := du_sailfish
+PRODUCT_NAME := vanir_sailfish
 PRODUCT_DEVICE := sailfish
 PRODUCT_BRAND := google
 PRODUCT_MODEL := Pixel
