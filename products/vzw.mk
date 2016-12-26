@@ -19,4 +19,7 @@ PRODUCT_COPY_FILES += \
     vendor/vanir/proprietary/vzw/lib/libmotricity.so:system/lib/libmotricity.so
 
 PRODUCT_GMS_CLIENTID_BASE := android-verizon
+
+#Visual Voicemail
+DEVICE_PACKAGE_OVERLAYS += vendor/vanir/proprietary/vzw/overlay
 endif
