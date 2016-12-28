@@ -6,11 +6,11 @@ PRODUCT_PROPERTY_OVERRIDES += \
     ro.goo.rom=vanir-m8
 
 # Boot Animation
-PRODUCT_COPY_FILES += \
-    vendor/vanir/proprietary/boot_animations/1080x1920.zip:system/media/bootanimation.zip
+TARGET_SCREEN_WIDTH := 1080
+TARGET_SCREEN_HEIGHT := 1920
 
 # Inherit device configuration
-$(call inherit-product, device/htc/m8/full_m8.mk)
+$(call inherit-product, device/htc/m8/device.mk)
 
 # Inherit common vanir files.
 $(call inherit-product, vendor/vanir/products/common_phones.mk)
