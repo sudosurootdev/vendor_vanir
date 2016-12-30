@@ -972,7 +972,7 @@ alias cmkap='dopush cmka'
 
 function repopick() {
     T=$(gettop)
-    $T/vendor/cm/build/tools/repopick.py $@
+    $T/vendor/vanir/build/tools/repopick.py $@
 }
 
 function fixup_common_out_dir() {
