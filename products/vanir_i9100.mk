@@ -2,11 +2,9 @@
 DHO_VENDOR := vanir
 
 # Boot
-PRODUCT_COPY_FILES += \
-    vendor/vanir/proprietary/boot_animations/480x800.zip:system/media/bootanimation.zip
+PRODUCT_COPY_FILES += vendor/vanir/proprietary/boot_animations/480x800.zip:system/media/bootanimation.zip
 
-PRODUCT_PROPERTY_OVERRIDES += \
-    ro.goo.rom=vanir-i9100
+PRODUCT_PROPERTY_OVERRIDES += ro.goo.rom=vanir-i9100
 
 # Inherit some common Vanir stuff.
 $(call inherit-product, vendor/vanir/products/common_phones.mk)
