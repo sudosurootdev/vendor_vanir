@@ -49,7 +49,7 @@ PRODUCT_PACKAGES += \
     QuickBoot \
     init.vanir.quickboot.rc
 
-VANIR_VERSION:=7.0
+VANIR_VERSION:=7.1
 Vanir_BUILD:=$(VANIR_VERSION)
 
 ifeq ($(RELEASE),)
