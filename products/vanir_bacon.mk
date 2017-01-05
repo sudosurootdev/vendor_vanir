@@ -6,6 +6,9 @@ PRODUCT_PROPERTY_OVERRIDES += drm.service.enabled=true ro.goo.rom=vanir-bacon
 # Boot Animation
 PRODUCT_COPY_FILES += vendor/vanir/proprietary/boot_animations/1080x1920.zip:system/media/bootanimation.zip
 
+# Inherit from those products. Most annoying first.
+$(call inherit-product, $(SRC_TARGET_DIR)/product/full_base_telephony.mk)
+
 # Inherit device configuration
 $(call inherit-product, device/oneplus/bacon/bacon.mk)
 
