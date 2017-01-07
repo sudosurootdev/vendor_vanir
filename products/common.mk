@@ -278,6 +278,9 @@ PRODUCT_PACKAGES += \
 
 -include vendor/cyngn/product.mk
 
++PRODUCT_EXTRA_RECOVERY_KEYS += \
+    vendor/vanir/build/target/product/security/lineage
+
 PRODUCT_PACKAGES += \
 	bootanimation.zip
 
