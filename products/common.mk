@@ -278,12 +278,6 @@ PRODUCT_PACKAGES += \
 
 -include vendor/cyngn/product.mk
 
-ifeq ($(OTA_PACKAGE_SIGNING_KEY),)
-    PRODUCT_EXTRA_RECOVERY_KEYS += \
-        vendor/vanir/build/target/product/security/cm \
-        vendor/vanir/build/target/product/security/cm-devkey
-endif
-
 PRODUCT_PACKAGES += \
 	bootanimation.zip
 
