@@ -1,10 +1,11 @@
-# Release name
-PRODUCT_RELEASE_NAME := falcon
+#Squisher Choosing
+DHO_VENDOR := vanir
 
 PRODUCT_COPY_FILES += \
     vendor/vanir/proprietary/boot_animations/720x1280.zip:system/media/bootanimation.zip 
-#Squisher Choosing
-DHO_VENDOR := vanir
+
+# Inherit from those products. Most annoying first.
+$(call inherit-product, $(SRC_TARGET_DIR)/product/full_base_telephony.mk)
 
 # Inherit device configuration
 $(call inherit-product, device/motorola/falcon/full_falcon.mk)
@@ -19,3 +20,5 @@ PRODUCT_DEVICE := falcon
 PRODUCT_BRAND := motorola
 PRODUCT_MODEL := MOTO G
 PRODUCT_MANUFACTURER := MOTOROLA
+
+PRODUCT_GMS_CLIENTID_BASE := android-motorola
