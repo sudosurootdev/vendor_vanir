@@ -12,30 +12,23 @@ sleep 3
 echo ""
 echo ""
 
-echo "FWB"
-cd $SOURCE_DIR/frameworks/base
-git reset --hard $VANIR
-git merge remotes/vanir/n71-substratum2
-
-echo ""
-echo "Native"
-cd $SOURCE_DIR/frameworks/native
-git reset --hard $VANIR
-git merge $SUB_BRANCH
-
-echo ""
-echo "Sepolicy"
-cd $SOURCE_DIR/system/sepolicy
-git reset --hard $VANIR
-git merge $SUB_BRANCH
-
-echo ""
+# The following 3 have conflicts and need a resolution.
 echo "Contacts"
 cd $SOURCE_DIR/packages/apps/Contacts
 git reset --hard $VANIR
 git merge $SUB_BRANCH
 
+echo "FWB"
+cd $SOURCE_DIR/frameworks/base
+git reset --hard $VANIR
+git merge $SUB_BRANCH
 
+echo "Sepolicy"
+cd $SOURCE_DIR/system/sepolicy
+git reset --hard $VANIR
+git merge $SUB_BRANCH
+
+# Now the clean merges
 echo ""
 echo "Fetch-Sex-Magic"
 # Masochism loops
@@ -56,9 +49,14 @@ git fetch https://github.com/SubstratumResources/platform_packages_apps_${u} $RE
 git merge FETCH_HEAD
 done
 
+
 # And the fucking annoying one that uses a different naming scheme
 cd $SOURCE_DIR/packages/apps/ContactsCommon
 git fetch https://github.com/SubstratumResources/packages_apps_ContactsCommon $REMOTE_BRANCH
+git merge FETCH_HEAD
+
+cd $SOURCE_DIR/packages/frameworks/native
+git fetch https://github.com/SubstratumResources/platform_frameworks_native $REMOTE_BRANCH
 git merge FETCH_HEAD
 
 echo ""
