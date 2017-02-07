@@ -2,11 +2,9 @@
 DHO_VENDOR := vanir
 
 # Boot
-PRODUCT_COPY_FILES += \
-    vendor/vanir/proprietary/boot_animations/720x1280.zip:system/media/bootanimation.zip
+PRODUCT_COPY_FILES += vendor/vanir/proprietary/boot_animations/720x1280.zip:system/media/bootanimation.zip
 
-PRODUCT_PROPERTY_OVERRIDES += \
-    ro.goo.rom=vanir-armani
+PRODUCT_PROPERTY_OVERRIDES += ro.goo.rom=vanir-armani
 
 # Inherit device configuration
 $(call inherit-product, device/xiaomi/armani/full_armani.mk)
@@ -23,5 +21,4 @@ PRODUCT_MANUFACTURER := Xiaomi
 
 PRODUCT_GMS_CLIENTID_BASE := android-xiaomi
 
-PRODUCT_BUILD_PROP_OVERRIDES += \
-    PRODUCT_NAME=armani
+PRODUCT_BUILD_PROP_OVERRIDES += PRODUCT_NAME=armani
