@@ -3,7 +3,7 @@
 # Configuration
 SOURCE_DIR=$"$(pwd)"
 VANIR=$"m/n71"
-SUB_BRANCH=$"remotes/vanir/n71-substratum"
+SUB_BRANCH=$"remotes/vanir/n71-substratum2"
 REMOTE_BRANCH=$"n-mr1-oms7"
 
 
