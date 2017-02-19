@@ -680,8 +680,6 @@ function cmrebase() {
 
 function mka() {
     local T=$(gettop)
-    local CWD=$(pwd)
-    croot
     if [ ! "$T" ]; then
         echo "Couldn't locate the top of the tree.  CD into it or try setting TOP." >&2
         return
@@ -692,18 +690,17 @@ function mka() {
     case $(uname -s) in
         Darwin)
             if [ ! $(echo $VANIR_PARALLEL_JOBS | wc -w) -gt 0 ]; then
-                local threads=$(sysctl hw.ncpu|cut -d" " -f2)
-                local load=$(expr $threads \* 2)
-                VANIR_PARALLEL_JOBS="-j$load"
+                local js=$(sysctl hw.ncpu|cut -d" " -f2)
+                VANIR_PARALLEL_JOBS="-j$js"
             fi
-            MAKECMD="$(command -pv make) $VANIR_PARALLEL_JOBS"
+            MAKECMD="$(command -pv make) -C $T $VANIR_PARALLEL_JOBS"
             ;;
         *)
             if [ ! $(echo $VANIR_PARALLEL_JOBS | wc -w) -gt 0 ]; then
-                local cores=$(nproc --all)
-                VANIR_PARALLEL_JOBS="-j$cores"
+                local js=$(grep "^processor" /proc/cpuinfo | wc -l)
+                VANIR_PARALLEL_JOBS="-j$js"
             fi
-            MAKECMD="schedtool -B -n 10 -e ionice -n 7 $(command -pv make) $VANIR_PARALLEL_JOBS"
+            MAKECMD="schedtool -B -n 10 -e ionice -n 7 $(command -pv make) -C $T $VANIR_PARALLEL_JOBS $@"
             ;;
     esac
     export start_time=$(date +"%s")
@@ -715,7 +712,6 @@ function mka() {
     else
         [ ! $VANIR_DISABLE_BUILD_COMPLETION_NOTIFICATIONS ] && notify-send "VANIR" "$TARGET_PRODUCT build FAILED." -i $T/build/buildfailed.png -t 10000
     fi
-    cd "$CWD"
     return $retval
 }
 
@@ -779,7 +775,7 @@ function mms() {
                 make -C $T -j $NUM_CPUS "$@"
             ;;
         *)
-            local NUM_CPUS=$(cat /proc/cpuinfo | grep "^processor" | wc -l)
+            local NUM_CPUS=$(grep "^processor" /proc/cpuinfo | wc -l)
             ONE_SHOT_MAKEFILE="__none__" \
                 mk_timer schedtool -B -n 1 -e ionice -n 1 \
                 make -C $T -j $NUM_CPUS "$@"
