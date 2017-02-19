@@ -3,7 +3,7 @@
 # Configuration
 SOURCE_DIR=$"$(pwd)"
 VANIR=$"m/n71"
-SUB_BRANCH=$"remotes/vanir/n71-substratum2"
+SUB_BRANCH=$"remotes/vanir/n71-substratum"
 REMOTE_BRANCH=$"n-mr1-oms7"
 
 
@@ -12,25 +12,29 @@ sleep 3
 echo ""
 echo ""
 
-# 3 have conflicts and need a resolution.  And FWN cleanly merged taint.
+# All need a resolution.  
 echo "Contacts"
 cd $SOURCE_DIR/packages/apps/Contacts
-git merge $SUB_BRANCH
+git merge $SUB_BRANCH --no-commit
+
+echo "Settings"
+cd $SOURCE_DIR/packages/apps/Settings
+git merge $SUB_BRANCH --no-commit
 
 echo ""
 echo "FWB"
 cd $SOURCE_DIR/frameworks/base
-git merge $SUB_BRANCH
+git merge remotes/vanir/n71-substratum2 --no-commit
 
 echo ""
 echo "FW Native"
 cd $SOURCE_DIR/frameworks/native
-git merge $SUB_BRANCH
+git merge $SUB_BRANCH --no-commit
 
 echo ""
 echo "Sepolicy"
 cd $SOURCE_DIR/system/sepolicy
-git merge $SUB_BRANCH
+git merge $SUB_BRANCH --no-commit
 
 # Now the clean merges
 echo ""
@@ -41,7 +45,6 @@ cat<<EOF
 Dialer
 ExactCalculator
 PhoneCommon
-Settings
 EOF
 }
 
@@ -62,5 +65,4 @@ git merge FETCH_HEAD
 
 echo ""
 echo ""
-echo ""
-echo "Member, need to merge commits to expose overlay for other AOSP apps and services... Member?"
+echo "Member to look for merge failures, member?"
