@@ -15,6 +15,9 @@ $(call inherit-product, device/oppo/find7s/find7s.mk)
 # Inherit common vanir files.
 $(call inherit-product, vendor/vanir/products/common_phones.mk)
 
+# AptX b/c we can
+$(call inherit-product, vendor/qcom/binaries/bluetooth/bluetooth-vendor.mk)
+
 ## Device identifier. This must come after all inclusions
 PRODUCT_NAME := vanir_find7s
 PRODUCT_DEVICE := find7s

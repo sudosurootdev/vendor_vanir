@@ -10,6 +10,9 @@ $(call inherit-product, device/huawei/kiwi/full_kiwi.mk)
 # Inherit common files.
 $(call inherit-product, vendor/vanir/products/common_phones.mk)
 
+# AptX b/c we can
+$(call inherit-product, vendor/qcom/binaries/bluetooth/bluetooth-vendor.mk)
+
 PRODUCT_NAME := vanir_kiwi
 PRODUCT_BRAND := HONOR
 PRODUCT_MODEL := KIW-L24
