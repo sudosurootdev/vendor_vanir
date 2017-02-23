@@ -9,6 +9,9 @@ $(call inherit-product, vendor/vanir/products/multi_g2-common.mk)
 # Inherit device configuration
 $(call inherit-product, device/lge/d802/d802.mk)
 
+# AptX b/c we can
+$(call inherit-product, vendor/qcom/binaries/bluetooth/bluetooth-vendor.mk)
+
 ## Device identifier. This must come after all inclusions
 PRODUCT_DEVICE := d802
 PRODUCT_NAME := vanir_d802
