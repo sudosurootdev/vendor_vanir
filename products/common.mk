@@ -158,7 +158,6 @@ PRODUCT_PACKAGES += \
     CMParts \
     Development \
     su \
-    HexoLibre \
     WeatherManagerService
 
 # Optional CM packages
