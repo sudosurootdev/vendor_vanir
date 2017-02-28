@@ -15,6 +15,9 @@ $(call inherit-product, device/htc/m8/device.mk)
 # Inherit common vanir files.
 $(call inherit-product, vendor/vanir/products/common_phones.mk)
 
+# AptX b/c we can
+$(call inherit-product, vendor/qcom/binaries/bluetooth/bluetooth-vendor.mk)
+
 ## Device identifier. This must come after all inclusions
 PRODUCT_DEVICE := m8
 PRODUCT_NAME := vanir_m8
