@@ -13,7 +13,7 @@ $(call inherit-product, vendor/vanir/products/common_phones.mk)
 # Inherit device repo
 $(call inherit-product, device/samsung/jfltetmo/full_jfltetmo.mk)
 
-PRODUCT_BUILD_PROP_OVERRIDES += PRODUCT_NAME=jfltetmo TARGET_DEVICE=jfltetmo BUILD_FINGERPRINT="samsung/jfltetmo/jfltetmo:4.4.4/KTU84P/M919UVUFOK3:user/release-keys" PRIVATE_BUILD_DESC="jfltetmo-user 4.4.4 KTU84P M919UVUFOK3 release-keys"
+PRODUCT_BUILD_PROP_OVERRIDES += PRODUCT_NAME=jfltetmo TARGET_DEVICE=jfltetmo BUILD_FINGERPRINT="samsung/jfltetmo/jfltetmo:4.4.4/KTU84P/M919UVSFQA1:user/release-keys" PRIVATE_BUILD_DESC="jfltetmo-user 4.4.4 KTU84P M919UVSFQA1 release-keys"
 
 #Tagging
 PRODUCT_NAME := vanir_jfltetmo
