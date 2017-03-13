@@ -18,7 +18,7 @@ case "$1" in
         echo "mount /system failed! plz inform nuclearmistake"
       fi
     fi
-    if [ -f /tmp/addon.d/70-gapps.sh ] && [ -d /system/priv-app/HotwordEnrollment ]; then
+    if [ -f /tmp/addon.d/70-gapps.sh ] && grep -q HotwordEnrollment /tmp/addon.d/70-gapps.sh && [ -d /system/priv-app/HotwordEnrollment ]; then
       echo "Fixing HotwordEnrollment..."
       echo ""
       echo '***************************************************'
