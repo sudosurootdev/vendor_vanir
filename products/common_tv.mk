@@ -8,5 +8,8 @@ PRODUCT_PROPERTY_OVERRIDES += \
     ro.config.notification_sound=Argon.ogg \
     ro.config.alarm_alert=Helium.ogg
 
+PRODUCT_PACKAGES += \
+	TvSettings
+
 # Audio Packages
 include frameworks/base/data/sounds/AudioPackage7alt.mk
