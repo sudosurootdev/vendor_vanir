@@ -9,6 +9,10 @@ PRODUCT_COPY_FILES += \
 PRODUCT_PACKAGES += \
     Stk
 
+# Sensitive Phone Numbers list
+PRODUCT_COPY_FILES += \
+    vendor/vanir/prebuilt/common/etc/sensitive_pn.xml:system/etc/sensitive_pn.xml
+
 PRODUCT_PACKAGES += \
     LatinIME \
     CellBroadcastReceiver \
