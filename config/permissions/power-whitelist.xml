@@ -16,4 +16,6 @@
 <config>
     <!-- Email app must always have network access for IMAP IDLE. -->
     <allow-in-power-save package="com.android.email" />
+    <!-- Maybe this will make wear cry less in logcat -->
+    <allow-in-power-save package="com.google.android.wearable.app" />
 </config>
