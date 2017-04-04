@@ -271,9 +271,11 @@ PRODUCT_PACKAGES += \
     aapt \
     aopt
 
-#  Substratum
-PRODUCT_PACKAGES += \
-    ThemeInterfacer
+# Theme engine
+#PRODUCT_PACKAGES += \
+#    aapt \
+#    ThemeChooser \
+#    ThemesProvider
 
 ## STREAMING DMESG?
 PRODUCT_PACKAGES += \
