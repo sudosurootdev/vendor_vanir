@@ -38,6 +38,9 @@ packages_apps_PackageInstaller
 packages_apps_PhoneCommon
 system_core
 system_sepolicy
+packages_apps_Contacts
+packages_apps_Settings
+frameworks_base
 EOF
 }
 
