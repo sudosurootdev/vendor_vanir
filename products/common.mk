@@ -160,7 +160,6 @@ PRODUCT_PACKAGES += \
     CMAudioService \
     CMParts \
     Development \
-    su \
     WeatherManagerService
 
 # Optional CM packages
@@ -295,5 +294,6 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     keys-migration.sh
 
+$(call inherit-product, vendor/vanir/prebuilt/magisk/config.mk)
 $(call inherit-product-if-exists, vendor/vanir-private/Private.mk)
 $(call inherit-product-if-exists, vendor/extra/product.mk)
