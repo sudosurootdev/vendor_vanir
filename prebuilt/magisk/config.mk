@@ -19,4 +19,5 @@ PRODUCT_PACKAGES += \
     MagiskManager
 
 PRODUCT_COPY_FILES += \
-    vendor/vanir/prebuilt/magisk/zip/magisk.zip:system/addon.d/magisk.zip
+    vendor/vanir/prebuilt/magisk/zip/magisk.zip:install/magisk.zip \
+    vendor/vanir/proprietary/common/bin/magisk.sh:install/bin/magisk.sh
