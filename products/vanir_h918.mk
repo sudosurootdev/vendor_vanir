@@ -19,7 +19,7 @@ $(call inherit-product, vendor/vanir/products/common_phones.mk)
 # Overlays (inherit after vendor/cm to ensure we override it)
 DEVICE_PACKAGE_OVERLAYS += $(LOCAL_PATH)/overlay
 
-PRODUCT_NAME := vanr_h918
+PRODUCT_NAME := vanir_h918
 PRODUCT_DEVICE := h918
 PRODUCT_BRAND := lge
 PRODUCT_MODEL := LG-H918
