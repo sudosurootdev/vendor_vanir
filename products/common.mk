@@ -36,6 +36,7 @@ PRODUCT_PACKAGES += \
     VanirUpdater \
     Profiles \
     CMSettingsProvider \
+    Jelly \
     ExactCalculator \
     LiveLockScreenService \
     Screencast \
