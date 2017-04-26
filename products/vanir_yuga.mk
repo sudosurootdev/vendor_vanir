@@ -10,7 +10,7 @@ PRODUCT_COPY_FILES += vendor/vanir/proprietary/boot_animations/1080x1920.zip:sys
 $(call inherit-product, vendor/vanir/products/common_phones.mk)
 
 # Inherit AOSP device configuration for yuga.
-$(call inherit-product, device/sony/yuga/full_yuga.mk)
+$(call inherit-product, device/sony/yuga/device.mk)
 
 #
 # Setup device specific product configuration.

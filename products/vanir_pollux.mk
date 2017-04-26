@@ -16,7 +16,7 @@ PRODUCT_COPY_FILES += vendor/vanir/proprietary/boot_animations/1080x1920.zip:sys
 $(call inherit-product, vendor/vanir/products/common_tabs.mk)
 
 # Inherit AOSP device configuration for Tablet Z GSM
-$(call inherit-product, device/sony/pollux/full_pollux.mk)
+$(call inherit-product, device/sony/pollux/device.mk)
 
 # Set those variables here to overwrite the inherited values.
 PRODUCT_NAME := vanir_pollux
