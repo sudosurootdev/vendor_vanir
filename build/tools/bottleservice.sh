@@ -25,6 +25,9 @@ fi
 kernelsource="android_$(echo $TARGET_KERNEL_SOURCE | sed 's/\//_/g')"
 
 source manifest/kernel_special_cases.sh $device
+if [ $kernellocation ]; then
+    TARGET_KERNEL_SOURCE=$kernellocation
+fi
 [ ! $remote ] && remote=$defaultremote
 [ ! $remoterevision ] && remoterevision=$defaultrevision
 
