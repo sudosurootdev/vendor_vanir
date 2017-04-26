@@ -3,7 +3,6 @@ for x in TARGET_DEVICE TARGET_KERNEL_SOURCE TARGET_NO_KERNEL device devicedir re
 done
 TARGET_DEVICE=$(get_build_var TARGET_DEVICE)
 TARGET_KERNEL_SOURCE=$(get_build_var TARGET_KERNEL_SOURCE)
-TARGET_NO_KERNEL=$(get_build_var TARGET_NO_KERNEL)
 device=${TARGET_DEVICE}
 devicedir="$(find device -name "$device" -type d | head -n 1)"
 if [ ! $devicedir ] || [ $(echo $devicedir | wc -c) -le 1 ]; then
@@ -15,10 +14,6 @@ fi
 if [ ! $devicedir ] || [ $(echo $devicedir | wc -c) -le 1 ]; then
     echo "$device IS A SACK OF CRAP AND SO ARE YOU."
     return 1
-fi
-
-if [ $TARGET_NO_KERNEL ] && [ "$TARGET_NO_KERNEL" = "true" ]; then
-    return 0
 fi
 
 if [ ! $TARGET_KERNEL_SOURCE ]; then
