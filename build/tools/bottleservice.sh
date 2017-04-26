@@ -1,3 +1,6 @@
+for x in TARGET_DEVICE TARGET_KERNEL_SOURCE TARGET_NO_KERNEL device devicedir remote remoterevision kernellocation kernelsource needschecking getkernelline; do
+  unset $x
+done
 TARGET_DEVICE=$(get_build_var TARGET_DEVICE)
 TARGET_KERNEL_SOURCE=$(get_build_var TARGET_KERNEL_SOURCE)
 TARGET_NO_KERNEL=$(get_build_var TARGET_NO_KERNEL)
