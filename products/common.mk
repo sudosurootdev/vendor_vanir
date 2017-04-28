@@ -19,7 +19,7 @@ PRODUCT_COPY_FILES += \
 
 # Include explicitly to workaround GMS issue
 PRODUCT_PACKAGES += \
-	libprotobuf-cpp-full \
+    libprotobuf-cpp-full \
     librsjni
 
 # Build packages included in manifest
