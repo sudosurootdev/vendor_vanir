@@ -191,7 +191,6 @@ PRODUCT_PACKAGES += \
     mount.ntfs \
     bash \
     vim \
-    wget \
     unzip \
     7z \
     lib7z \
@@ -250,9 +249,14 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     rsync
 
-# busybox
+# busybox OR wget replacement script
+ifneq ($(NO_BUSYBOX), true)
 PRODUCT_PACKAGES += \
-	busybox
+    busybox
+else
+PRODUCT_PACKAGES += \
+    wget
+endif
 
 # Storage manager
 PRODUCT_PROPERTY_OVERRIDES += \
