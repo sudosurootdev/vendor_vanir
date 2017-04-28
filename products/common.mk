@@ -247,16 +247,8 @@ PRODUCT_PACKAGES += \
 
 # rsync
 PRODUCT_PACKAGES += \
-    rsync
-
-# busybox OR wget replacement script
-ifneq ($(NO_BUSYBOX), true)
-PRODUCT_PACKAGES += \
-    busybox
-else
-PRODUCT_PACKAGES += \
+    rsync \
     wget
-endif
 
 # Storage manager
 PRODUCT_PROPERTY_OVERRIDES += \
