@@ -782,10 +782,10 @@ function fix_xml() {
         echo "!!!! Cannot fix_xml $XML (file missing)" 1>&2
         return
     fi
-
     local TEMP_XML="$TMPDIR/`basename "$XML"`.temp"
-    grep '^<?xml version' "$XML" > "$TEMP_XML"
-    grep -v '^<?xml version' "$XML" >> "$TEMP_XML"
+
+    grep -a '^<?xml version' "$XML" > "$TEMP_XML"
+    grep -av '^<?xml version' "$XML" >> "$TEMP_XML"
 
     mv "$TEMP_XML" "$XML"
 }
