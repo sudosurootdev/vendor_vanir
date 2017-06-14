@@ -20,7 +20,6 @@
         <item>com.android.location.fused</item>
         <item>com.android.settings</item>
         <item>com.android.defcontainer</item>
-        <item>com.android.poweronalert</item>
         <item>com.android.shell</item>
         <item>com.android.deskclock</item>
         <item>com.android.providers.media</item>
