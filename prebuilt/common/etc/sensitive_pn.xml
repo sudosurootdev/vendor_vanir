@@ -43,7 +43,7 @@
         <item>0800222555</item>
     </sensitivePN>
     <!--GB-->
-    <sensitivePN network="234">
+    <sensitivePN network="234,235">
         <item>08082000247</item>
     </sensitivePN>
     <!--Norway-->
