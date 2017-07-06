@@ -24,7 +24,6 @@ PRODUCT_PACKAGES += \
 
 # Build packages included in manifest
 PRODUCT_PACKAGES += \
-    CustomTiles \
     IndecentXposure \
     Exchange2 \
     LockClock \
