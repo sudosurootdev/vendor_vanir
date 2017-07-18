@@ -284,6 +284,11 @@ PRODUCT_PACKAGES += \
 +PRODUCT_EXTRA_RECOVERY_KEYS += \
     vendor/vanir/build/target/product/security/lineage
 
+# TWRP
+ifeq ($(WITH_TWRP),true)
+include vendor/vanir/config/twrp.mk
+endif
+
 PRODUCT_PACKAGES += \
 	bootanimation.zip
 
