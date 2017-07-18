@@ -1,15 +1,35 @@
 type afterboot, domain;
 type afterboot_exec, exec_type, file_type;
 
+domain_auto_trans(shell, afterboot_exec, afterboot);
+domain_auto_trans(su, afterboot_exec, afterboot);
+domain_auto_trans(afterboot, afterboot_exec, su);
+#domain_auto_trans(afterboot, afterboot_exec, shell);
+
+permissive afterboot;
+
 init_daemon_domain(afterboot)
 
-#============= afterboot ==============
-allow afterboot system_data_file:file { rw_file_perms };
-allow afterboot devpts:file { rw_file_perms };
-allow afterboot shell_exec:file { rx_file_perms };
-allow afterboot system_file:file { rx_file_perms };
-allow afterboot sysfs:file rw_file_perms;
-allow afterboot sysfs_devices_system_cpu:file write;
-allow afterboot self:process setcurrent;
-allow afterboot devpts:chr_file { read write open ioctl };
-allow afterboot system_file:dir { r_dir_perms };
+dontaudit afterboot self:capability_class_set *;
+dontaudit afterboot kernel:security *;
+dontaudit afterboot kernel:system *;
+dontaudit afterboot self:memprotect *;
+dontaudit afterboot domain:process *;
+dontaudit afterboot domain:fd *;
+dontaudit afterboot domain:dir *;
+dontaudit afterboot domain:lnk_file *;
+dontaudit afterboot domain:{ fifo_file file } *;
+dontaudit afterboot domain:socket_class_set *;
+dontaudit afterboot domain:ipc_class_set *;
+dontaudit afterboot domain:key *;
+dontaudit afterboot fs_type:filesystem *;
+dontaudit afterboot {fs_type dev_type file_type}:dir_file_class_set *;
+dontaudit afterboot node_type:node *;
+dontaudit afterboot node_type:{ tcp_socket udp_socket rawip_socket } *;
+dontaudit afterboot netif_type:netif *;
+dontaudit afterboot port_type:socket_class_set *;
+dontaudit afterboot port_type:{ tcp_socket dccp_socket } *;
+dontaudit afterboot domain:peer *;
+dontaudit afterboot domain:binder *;
+dontaudit afterboot property_type:property_service *;
+dontaudit afterboot appops_service:service_manager *;
