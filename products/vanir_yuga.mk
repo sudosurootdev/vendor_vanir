@@ -3,8 +3,8 @@ DHO_VENDOR := vanir
 
 PRODUCT_PROPERTY_OVERRIDES += ro.goo.rom=vanir-YUGA
 
-# Boot Animation
-PRODUCT_COPY_FILES += vendor/vanir/proprietary/boot_animations/1080x1920.zip:system/media/bootanimation.zip
+TARGET_SCREEN_WIDTH := 1080
+TARGET_SCREEN_HEIGHT := 1920
 
 # Vanir configuration
 $(call inherit-product, vendor/vanir/products/common_phones.mk)
