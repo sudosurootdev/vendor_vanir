@@ -1,14 +1,15 @@
 #Squisher Choosing
 DHO_VENDOR := vanir
 
+# needed for boot logo
+TARGET_SCREEN_HEIGHT := 1200
+TARGET_SCREEN_WIDTH := 1920
+
 # Run these first or they will not stick
 PRODUCT_PROPERTY_OVERRIDES += ro.goo.rom=vanir-pollux_windy
 
 # Tablet Overlays with radios
 PRODUCT_PACKAGE_OVERLAYS += vendor/vanir/overlay/tab_no_radio
-
-# Boot Animation
-PRODUCT_COPY_FILES += vendor/vanir/proprietary/boot_animations/1080x1920.zip:system/media/bootanimation.zip
 
 # Inherit common product files.
 $(call inherit-product, vendor/vanir/products/common_tabs.mk)
