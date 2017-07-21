@@ -232,8 +232,8 @@ PRODUCT_PACKAGES += \
 endif
 
 # Keyboard Files
-PRODUCT_COPY_FILES += vendor/vanir/proprietary/common/lib/libjni_latinimegoogle.so:system/lib/libjni_latinime.so
-PRODUCT_PACKAGES += Latinimegoogle
+    PRODUCT_COPY_FILES += vendor/vanir/proprietary/common/lib/libjni_latinimegoogle.so:system/lib/libjni_latinime.so
+    PRODUCT_PACKAGES += Latinimegoogle
 
 # Openssh
 PRODUCT_PACKAGES += \
@@ -285,10 +285,7 @@ PRODUCT_PACKAGES += \
     vendor/vanir/build/target/product/security/lineage
 
 PRODUCT_PACKAGES += \
-    bootanimation.zip
-
-PRODUCT_PACKAGES += \
-    keys-migration.sh
+	bootanimation.zip
 
 $(call inherit-product, vendor/vanir/prebuilt/magisk/config.mk)
 $(call inherit-product-if-exists, vendor/vanir-private/Private.mk)
