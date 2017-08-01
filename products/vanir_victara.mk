@@ -11,6 +11,9 @@ TARGET_SCREEN_HEIGHT := 1920
 # Inherit common product files.
 NO_DRM_BLOBS := true
 
+# Overlay
+DEVICE_PACKAGE_OVERLAYS += device/motorola/victara/overlay
+
 # Inherit common vanir stuff
 $(call inherit-product, vendor/vanir/products/common_phones.mk)
 
