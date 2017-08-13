@@ -325,12 +325,15 @@ function installboot()
     if ([ $CM_BUILD ] && adb shell getprop ro.cm.device | grep -q "$CM_BUILD") || ([ $VANIR_BUILD ] && adb      shell getprop ro.vanir.device | grep -q "$VANIR_BUILD");
     then
         adb push $OUT/boot.img /cache/
-        for i in $OUT/system/lib/modules/*;
-        do
-            adb push $i /system/lib/modules/
-        done
+        if [ -e "$OUT/system/lib/modules/*" ];
+        then
+            for i in $OUT/system/lib/modules/*;
+            do
+                adb push $i /system/lib/modules/
+            done
+            adb shell chmod 644 /system/lib/modules/*
+        fi
         adb shell dd if=/cache/boot.img of=$PARTITION
-        adb shell chmod 644 /system/lib/modules/*
         echo "Installation complete."
     else
         echo "The connected device does not appear to be $VANIR_BUILD$CM_BUILD, run away!"
