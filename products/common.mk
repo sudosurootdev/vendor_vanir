@@ -37,7 +37,6 @@ PRODUCT_PACKAGES += \
     CMSettingsProvider \
     Jelly \
     ExactCalculator \
-    LiveLockScreenService \
     Screencast \
     WeatherProvider \
     WallpaperPicker
