@@ -2,7 +2,7 @@
 
 get_source_ccache_version()
 {
-   version=`git --git-dir=./ccache/.git describe --dirty 2>/dev/null || echo unknown`
+   version=`git --git-dir=$(dirname $0)/../../../../ccache/.git describe --dirty 2>/dev/null || echo unknown`
    if echo $version | grep -q "^v"; then
      version="`echo $version | sed 's/v//'`"
    fi
