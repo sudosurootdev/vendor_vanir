@@ -24,7 +24,6 @@ DEVICE_PACKAGE_OVERLAYS += device/htc/flounder/overlay-cm
 BOARD_NEEDS_VENDORIMAGE_SYMLINK := true
 
 # It's a Nexus
-PRODUCT_IS_A_NEXUS := true
 
 # Inline kernel building
 KERNEL_TOOLCHAIN := $(ANDROID_BUILD_TOP)/prebuilts/gcc/$(HOST_OS)-x86/aarch64/aarch64-linux-android-4.9/bin
